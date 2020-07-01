@@ -1,0 +1,33 @@
+.profile__add-button {
+  grid-area: 1 / 7 / 3 / 8;
+  border: solid 1px #fff;
+  outline: none;
+  font: inherit;
+  color: inherit;
+  background: none;
+  align-self: center;
+  font-size: 2.7rem;
+  font-weight: 200;
+  padding: 0 0 6px 0;
+  line-height: 0.95;
+  border-radius: 1px;
+}
+
+.profile__add-button:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 700px) {
+  .profile__add-button {
+    margin: 33px 0 0 0;
+    grid-area: 3 / 1 / 4 / 7;
+  }
+}
+
+@media screen and (max-width: 523px) {
+  .profile__add-button {
+    grid-area: 4 / 1 / 5 / 3;
+    font-size: 2.1rem;
+    line-height: 1.26;
+  }
+}

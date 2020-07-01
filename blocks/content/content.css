@@ -1,0 +1,4 @@
+.content {
+  grid-area: 2 / 3 / 3 / 4;
+  display: grid;
+}

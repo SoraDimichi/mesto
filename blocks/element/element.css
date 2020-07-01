@@ -1,0 +1,14 @@
+@import url('./__title/element__title.css');
+@import url('./__image/element__image.css');
+@import url('./__like-button/element__like-button.css');
+
+.element {
+  margin: 0;
+  background-color: #fff;
+  border-radius: 3.5%;
+  display: grid;
+  grid-template-columns: minmax(210px, max-content) 30px min-content;
+  justify-content: space-between;
+  align-content: center;
+  overflow: hidden;
+}

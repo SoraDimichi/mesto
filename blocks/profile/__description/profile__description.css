@@ -1,0 +1,13 @@
+.profile__description {
+  grid-area: 2 / 3 / 3 / 4;
+  margin: 0;
+  font-size: 1.125rem;
+}
+
+@media screen and (max-width: 523px) {
+  .profile__description {
+    grid-area: 3 / 1 / 4 / 3;
+    justify-self: center;
+    font-size: 0.875rem;
+  }
+}

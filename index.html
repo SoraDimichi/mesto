@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Mesto | Жак-Ив Кусто</title>
+</head>
+
+<body class="page">
+
+  <header class="header">
+    <img class="header__logo"
+    src="./images/header/__logo/header__logo.svg"
+    alt="Логотип">
+  </header>
+
+  <main class="content">
+
+    <section class="profile">
+      <img class="profile__avatar" src="./images/profile/__avatar/avatar.png" alt="аватар">
+      <h1 class="profile__name">
+        Жак-Ив Кусто
+      </h1>
+      <p class="profile__description">
+        Исследователь океана
+      </p>
+      <p class="footer__copyright">
+
+      </p>
+      <button class="profile__edit-button">
+       <img class="profile__edit-button-image" src="./images/profile/__edit-button/edit_button.svg" alt="Отредактировать">
+      </button>
+      <button class="profile__add-button">
+        +
+      </button>
+    </section>
+
+    <section class="elements">
+      <figure class="element">
+        <img class="element__image" src="images/element/__image/church.png" alt="Церковь">
+        <figcaption class="element__title">Карачаевск</figcaption>
+        <button class="element__like-button">
+          <img class="element__like-button-image" src="images/element/__like-button/like-button.svg" alt="Нравится">
+        </button>
+      </figure>
+
+      <figure class="element">
+        <img class="element__image" src="images/element/__image/elbrus.png" alt="Эльбрус">
+        <figcaption class="element__title">Гора Эльбрус</figcaption>
+        <button class="element__like-button">
+          <img class="element__like-button-image" src="images/element/__like-button/like-button.svg" alt="Нравится">
+        </button>
+      </figure>
+
+      <figure class="element">
+        <img class="element__image" src="images/element/__image/dombai.png" alt="Домбай">
+        <figcaption class="element__title">Домбай</figcaption>
+        <button class="element__like-button">
+          <img class="element__like-button-image" src="images/element/__like-button/like-button.svg" alt="Нравится">
+        </button>
+      </figure>
+
+      <figure class="element">
+        <img class="element__image" src="images/element/__image/elbrus.png" alt="Эльбрус">
+        <figcaption class="element__title">Гора Эльбрус</figcaption>
+        <button class="element__like-button">
+          <img class="element__like-button-image" src="images/element/__like-button/like-button.svg" alt="Нравится">
+        </button>
+      </figure>
+
+      <figure class="element">
+        <img class="element__image" src="images/element/__image/dombai.png" alt="Домбай">
+        <figcaption class="element__title">Домбай</figcaption>
+        <button class="element__like-button">
+          <img class="element__like-button-image" src="images/element/__like-button/like-button.svg" alt="Нравится">
+        </button>
+      </figure>
+
+      <figure class="element">
+        <img class="element__image" src="images/element/__image/church.png" alt="Церковь">
+        <figcaption class="element__title">Карачаево-Черкесия</figcaption>
+        <button class="element__like-button">
+          <img class="element__like-button-image" src="images/element/__like-button/like-button.svg" alt="Нравится">
+        </button>
+      </figure>
+
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p class="footer__copyright">
+      © 2020 Mesto Russia
+    </p>
+  </footer>
+
+  <section class="form">
+    <button class="form__close-button">
+      ✖
+    </button>
+    <p class="popup-form__title">
+      Редактировать профиль
+    </p>
+    <label>
+      <input type="text" placeholder="Жак-Ив Кусто" class="form__input-text form__input-text-type-name">
+    </label>
+    <label>
+      <input type="text" placeholder="Исследователь океана" class="form__input-text form__input-text-type-description">
+    </label>
+    <button class="form__submit-button">
+      Сохранить
+    </button>
+  </section>
+  <script src="./blocks/form/form.js"></script>
+
+</body>

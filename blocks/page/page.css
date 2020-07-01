@@ -1,0 +1,15 @@
+.page {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  margin: 0 0 0 0;
+  display: grid;
+  grid-template-columns: 1fr minmax(19px, 1fr) minmax(282px, 878px) minmax(19px, 1fr) 1fr;
+  justify-content: center;
+  background-color: #000;
+  color: #fff;
+  font-family: 'Inter', 'Arial', sans-serif;
+}
