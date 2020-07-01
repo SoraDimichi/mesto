@@ -1,0 +1,16 @@
+@import url('__closeButton/popup__closeButton.css');
+@import url('_hidden/popup_hidden.css');
+@import url('_opened/popup_opened.css');
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0008;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  grid-template-columns: 19px minmax(min-content, max-content) 19px;
+}

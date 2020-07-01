@@ -1,0 +1,29 @@
+@import url('./_typeDescription/form__inputText_typeDescription.css');
+@import url('./_typeName/form__inputText_typeName.css');
+
+.form__inputText {
+  padding: 0 0 8px 0;
+  line-height: 17px;
+  font-size: 14px;
+  color: #000;
+  border: 0;
+  border-bottom: 1px solid #0003;
+  border-radius: 0;
+  background-color: inherit;
+}
+
+.form__inputText::placeholder {
+  color: #000;
+  font-family: 'Inter', 'Arial', sans-serif;
+}
+
+.form__inputText:focus {
+  outline: 0;
+}
+
+@media screen and (max-width: 420px) {
+  .form__inputText.form__inputText::placeholder {
+    text-align: center;
+    font-size: 0.875rem;
+  }
+}

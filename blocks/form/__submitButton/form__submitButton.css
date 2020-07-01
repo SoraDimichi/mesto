@@ -1,0 +1,20 @@
+@import url('./_disabled/form__submitButton_disabled.css');
+@import url('./_enabled/form__submitButton_enabled.css');
+
+.form__submitButton {
+  grid-area: 8 / 2 / 9 / 3;
+  padding: 14px 0 13px 0;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  line-height: 22px;
+  border-radius: 2px;
+  background-color: #000;
+  color: #fff;
+}
+
+@media screen and (max-width: 420px) {
+  .form__submitButton {
+    font-size: 15px;
+  }
+}

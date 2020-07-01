@@ -25,13 +25,10 @@
       <p class="profile__description">
         Исследователь океана
       </p>
-      <p class="footer__copyright">
-
-      </p>
-      <button class="profile__edit-button">
-       <img class="profile__edit-button-image" src="./images/profile/__edit-button/edit_button.svg" alt="Отредактировать">
+      <button class="profile__openPopupButton">
+       <img class="profile__openPopupButtonImage" src="./images/profile/__edit-button/edit_button.svg" alt="Отредактировать">
       </button>
-      <button class="profile__add-button">
+      <button class="profile__addButton">
         +
       </button>
     </section>
@@ -40,48 +37,48 @@
       <figure class="element">
         <img class="element__image" src="images/element/__image/church.png" alt="Церковь">
         <figcaption class="element__title">Карачаевск</figcaption>
-        <button class="element__like-button">
-          <img class="element__like-button-image" src="images/element/__like-button/like-button.svg" alt="Нравится">
+        <button class="element__likeButton">
+          <img class="element__likeButtonImage" src="images/element/__like-button/like-button.svg" alt="Нравится">
         </button>
       </figure>
 
       <figure class="element">
         <img class="element__image" src="images/element/__image/elbrus.png" alt="Эльбрус">
         <figcaption class="element__title">Гора Эльбрус</figcaption>
-        <button class="element__like-button">
-          <img class="element__like-button-image" src="images/element/__like-button/like-button.svg" alt="Нравится">
+        <button class="element__likeButton">
+          <img class="element__likeButtonImage" src="images/element/__like-button/like-button.svg" alt="Нравится">
         </button>
       </figure>
 
       <figure class="element">
         <img class="element__image" src="images/element/__image/dombai.png" alt="Домбай">
         <figcaption class="element__title">Домбай</figcaption>
-        <button class="element__like-button">
-          <img class="element__like-button-image" src="images/element/__like-button/like-button.svg" alt="Нравится">
+        <button class="element__likeButton">
+          <img class="element__likeButtonImage" src="images/element/__like-button/like-button.svg" alt="Нравится">
         </button>
       </figure>
 
       <figure class="element">
         <img class="element__image" src="images/element/__image/elbrus.png" alt="Эльбрус">
         <figcaption class="element__title">Гора Эльбрус</figcaption>
-        <button class="element__like-button">
-          <img class="element__like-button-image" src="images/element/__like-button/like-button.svg" alt="Нравится">
+        <button class="element__likeButton">
+          <img class="element__likeButtonImage" src="images/element/__like-button/like-button.svg" alt="Нравится">
         </button>
       </figure>
 
       <figure class="element">
         <img class="element__image" src="images/element/__image/dombai.png" alt="Домбай">
         <figcaption class="element__title">Домбай</figcaption>
-        <button class="element__like-button">
-          <img class="element__like-button-image" src="images/element/__like-button/like-button.svg" alt="Нравится">
+        <button class="element__likeButton">
+          <img class="element__likeButtonImage" src="images/element/__like-button/like-button.svg" alt="Нравится">
         </button>
       </figure>
 
       <figure class="element">
         <img class="element__image" src="images/element/__image/church.png" alt="Церковь">
         <figcaption class="element__title">Карачаево-Черкесия</figcaption>
-        <button class="element__like-button">
-          <img class="element__like-button-image" src="images/element/__like-button/like-button.svg" alt="Нравится">
+        <button class="element__likeButton">
+          <img class="element__likeButtonImage" src="images/element/__like-button/like-button.svg" alt="Нравится">
         </button>
       </figure>
 
@@ -95,23 +92,25 @@
     </p>
   </footer>
 
-  <section class="form">
-    <button class="form__close-button">
-      ✖
-    </button>
-    <p class="popup-form__title">
-      Редактировать профиль
-    </p>
-    <label>
-      <input type="text" placeholder="Жак-Ив Кусто" class="form__input-text form__input-text-type-name">
-    </label>
-    <label>
-      <input type="text" placeholder="Исследователь океана" class="form__input-text form__input-text-type-description">
-    </label>
-    <button class="form__submit-button">
-      Сохранить
-    </button>
-  </section>
-  <script src="./blocks/form/form.js"></script>
+    <section class="popup popup_hidden">
+      <button class="popup__closeButton">
+        🞩
+      </button>
+
+      <section class="form">
+        <p class="form__title">
+          Редактировать профиль
+        </p>
+        <!--Линтер хочет, что бы я закрывал labelами инпуты, обязательно ли это делать по кодстайлу и как?-->
+          <input type="text" placeholder="Жак-Ив Кусто" class="form__inputText form__inputText_typeName">
+          <input type="text" placeholder="Исследователь океана" class="form__inputText form__inputText_typeDescription">
+        <button class="form__submitButton form__submitButton_disabled" disabled>
+          Сохранить
+        </button>
+      </section>
+
+    </section>
+
+  <script src="blocks/popup/popup.js"></script>
 
 </body>

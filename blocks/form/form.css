@@ -1,31 +1,18 @@
 @import url('./__title/form__title.css');
-@import url('./__submit-button/form__submit-button.css');
-@import url('./__input-text/form__input-text.css');
-@import url('./__close-button/form__close-button.css');
+@import url('./__inputText/form__inputText.css');
+@import url('./__submitButton/form__submitButton.css');
 
 .form {
-  top: 30%;
-  bottom: 30%;
-  left: 30%;
-  right: 30%;
-  position: fixed;
-  display: none;
-  justify-content: center;
-  align-content: center;
-  background: green;
+  grid-area: 2 / 2 / 3 / 3;
+  display: grid;
+  background-color: white;
+  border-radius: 10px;
+  grid-template-rows: 34px auto 49px auto 31px auto 49px auto 37px;
+  grid-template-columns: minmax(19px, 36px) minmax(max-content, 358px) minmax(19px, 36px);
 }
-/*.form {*/
-/*  padding: 5% 5% 5% 5%;*/
-/*  position: fixed;*/
-/*  background-color: #fff;*/
-/*  display: grid;*/
 
-/*}*/
-
-/*.form::before {*/
-/*  width: 100%;*/
-/*  background-color: #00000080;*/
-/*  display: flex;*/
-/*  justify-content: center;*/
-/*  align-content: center;*/
-/*}*/
+@media screen and (max-width: 420px) {
+  .form {
+    grid-template-rows: 30px auto 40px auto 31px auto 40px auto 33px;
+  }
+}

@@ -1,4 +1,4 @@
-.profile__edit-button {
+.profile__openPopupButton {
   grid-area: 1 / 5 / 2 / 6;
   padding: 0;
   border: none;
@@ -11,12 +11,13 @@
   margin: 0 0 15px 0;
 }
 
-.profile__edit-button:hover {
+.profile__openPopupButton:hover {
   opacity: 0.6;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 523px) {
-  .profile__edit-button {
+  .profile__openPopupButton {
     grid-area: 2 / 2 / 3 / 3;
     justify-self: start;
     margin: 0 0 10px 0;

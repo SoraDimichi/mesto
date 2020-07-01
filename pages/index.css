@@ -6,5 +6,5 @@
 @import url('../blocks/elements/elements.css');
 @import url('../blocks/element/element.css');
 @import url('../blocks/footer/footer.css');
+@import url('../blocks/popup/popup.css');
 @import url('../blocks/form/form.css');
-@import url('../blocks/form/_opened/form_opened.css');

@@ -1,4 +1,4 @@
-.profile__add-button {
+.profile__addButton {
   grid-area: 1 / 7 / 3 / 8;
   border: solid 1px #fff;
   outline: none;
@@ -13,19 +13,20 @@
   border-radius: 1px;
 }
 
-.profile__add-button:hover {
+.profile__addButton:hover {
   opacity: 0.6;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 700px) {
-  .profile__add-button {
+  .profile__addButton {
     margin: 33px 0 0 0;
     grid-area: 3 / 1 / 4 / 7;
   }
 }
 
 @media screen and (max-width: 523px) {
-  .profile__add-button {
+  .profile__addButton {
     grid-area: 4 / 1 / 5 / 3;
     font-size: 2.1rem;
     line-height: 1.26;

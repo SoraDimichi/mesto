@@ -1,9 +1,9 @@
 @import url('./__avatar/profile__avatar.css');
 @import url('./__name/profile__name.css');
 @import url('./__description/profile__description.css');
-@import url('./__edit-button/profile__edit-button.css');
-@import url('./__edit-button-image/profile__edit-button-image.css');
-@import url('./__add-button/profile__add-button.css');
+@import url('__openPopupButton/profile__openPopupButton.css');
+@import url('__openPopupButtonImage/profile__openPopupButtonImage.css');
+@import url('__addButton/profile__addButton.css');
 
 .profile {
   display: grid;
@@ -17,7 +17,7 @@
   }
 }
 
-@media screen and (max-width: 517px) {
+@media screen and (max-width: 523px) {
   .profile {
     grid-template-columns: auto;
     margin: 42px 0 36px 0;
