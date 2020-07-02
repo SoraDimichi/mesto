@@ -1,11 +1,11 @@
-const script = document.querySelector('.popup')
+const popup = document.querySelector('.popup')
 const popupOpenButton = document.querySelector('.profile__openPopupButton')
-const popupCloseButton = script.querySelector('.popup__closeButton')
-const formSubmitButton = script.querySelector('.form__submitButton')
+const popupCloseButton = popup.querySelector('.popup__closeButton')
+const formSubmitButton = popup.querySelector('.form__submitButton')
 
 
-const formInputName = script.querySelector('.form__inputText_typeName')
-const formInputDescription = script.querySelector('.form__inputText_typeDescription')
+const formInputName = popup.querySelector('.form__inputText_typeName')
+const formInputDescription = popup.querySelector('.form__inputText_typeDescription')
 const outputName = document.querySelector('.profile__name')
 const outputDescription = document.querySelector('.profile__description')
 
@@ -35,13 +35,13 @@ formSubmitButton.addEventListener('click', changeNameAndDescription);
 const popupOpen = function () {
     formInputName.value = outputName.innerHTML
     formInputDescription.value = outputDescription.innerHTML
-    script.classList.add('popup_opened')
-    script.classList.remove('popup_hidden')
+    popup.classList.add('popup_opened')
+    popup.classList.remove('popup_hidden')
 }
 
 const popupClose = function () {
-    script.classList.add('popup_hidden')
-    script.classList.remove('popup_opened')
+    popup.classList.add('popup_hidden')
+    popup.classList.remove('popup_opened')
 }
 
 const closePopupByClickingOverlay = function (event) {
@@ -49,6 +49,6 @@ const closePopupByClickingOverlay = function (event) {
     popupClose()
 }
 
-script.addEventListener('click', closePopupByClickingOverlay)
+popup.addEventListener('click', closePopupByClickingOverlay)
 popupOpenButton.addEventListener('click', popupOpen)
 popupCloseButton.addEventListener('click', popupClose)

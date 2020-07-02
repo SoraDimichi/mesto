@@ -1,4 +1,5 @@
 .popup__closeButton {
+  user-select: none;
   grid-area: 1 / 2 / 2 / 3;
   justify-self: end;
   margin: 0 -41px 0 0;

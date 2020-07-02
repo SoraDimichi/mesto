@@ -1,4 +1,11 @@
 .content {
-  grid-area: 2 / 3 / 3 / 4;
+  grid-area: 3 / 3 / 4 / 4;
   display: grid;
+  grid-template-rows: auto 51px auto;
+}
+
+@media screen and (max-width: 523px) {
+  .content {
+    grid-template-rows: auto 36px auto;
+  }
 }

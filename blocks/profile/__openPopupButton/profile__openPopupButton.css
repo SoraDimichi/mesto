@@ -6,9 +6,8 @@
   font: inherit;
   color: inherit;
   background: none;
+  justify-self: end;
   align-self: end;
-  justify-self: start;
-  margin: 0 0 15px 0;
 }
 
 .profile__openPopupButton:hover {
@@ -20,6 +19,6 @@
   .profile__openPopupButton {
     grid-area: 2 / 2 / 3 / 3;
     justify-self: start;
-    margin: 0 0 10px 0;
+    /*margin: 0 0 10px 0;*/
   }
 }

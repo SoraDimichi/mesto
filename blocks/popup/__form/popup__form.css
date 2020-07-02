@@ -1,6 +1,4 @@
-@import url('./__title/form__title.css');
-@import url('./__inputText/form__inputText.css');
-@import url('./__submitButton/form__submitButton.css');
+
 
 .form {
   grid-area: 2 / 2 / 3 / 3;

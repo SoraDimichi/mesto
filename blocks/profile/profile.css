@@ -6,20 +6,20 @@
 @import url('__addButton/profile__addButton.css');
 
 .profile {
+  grid-area: 1 / 1 / 2 / 2;
   display: grid;
-  grid-template-columns: max-content 29px max-content 18px min-content 1fr 150px;
-  margin: 39px 0 51px 0;
+  grid-template-columns: max-content 28px max-content 20px min-content 1fr 146px;
+  grid-template-rows: 65px 14px 1fr;
 }
 
 @media screen and (max-width: 700px) {
   .profile {
-    grid-template-columns: max-content minmax(29px, 1fr) max-content 18px min-content 1fr;
+    grid-template-rows: 54% 14px 1fr 33px auto;
   }
 }
 
 @media screen and (max-width: 523px) {
   .profile {
     grid-template-columns: auto;
-    margin: 42px 0 36px 0;
   }
 }

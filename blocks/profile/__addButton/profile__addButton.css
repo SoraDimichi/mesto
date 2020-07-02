@@ -1,5 +1,6 @@
 .profile__addButton {
-  grid-area: 1 / 7 / 3 / 8;
+  user-select: none;
+  grid-area: 1 / 7 / 4 / 8;
   border: solid 1px #fff;
   outline: none;
   font: inherit;
@@ -8,9 +9,9 @@
   align-self: center;
   font-size: 2.7rem;
   font-weight: 200;
-  padding: 0 0 6px 0;
   line-height: 0.95;
   border-radius: 1px;
+  padding-bottom: 6px;
 }
 
 .profile__addButton:hover {
@@ -20,8 +21,7 @@
 
 @media screen and (max-width: 700px) {
   .profile__addButton {
-    margin: 33px 0 0 0;
-    grid-area: 3 / 1 / 4 / 7;
+    grid-area: 5 / 1 / 6 / 8;
   }
 }
 

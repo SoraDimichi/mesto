@@ -1,5 +1,5 @@
-@import url('./_disabled/form__submitButton_disabled.css');
-@import url('./_enabled/form__submitButton_enabled.css');
+@import url('./_disabled/popup__formSubmitButton_disabled.css');
+@import url('./_enabled/popup__formSubmitButton_enabled.css');
 
 .form__submitButton {
   grid-area: 8 / 2 / 9 / 3;

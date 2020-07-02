@@ -5,11 +5,18 @@
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
-  margin: 0 0 0 0;
+  margin: 0;
   display: grid;
   grid-template-columns: 1fr minmax(19px, 1fr) minmax(282px, 878px) minmax(19px, 1fr) 1fr;
+  grid-template-rows: auto 39px auto 66px auto;
   justify-content: center;
   background-color: #000;
   color: #fff;
   font-family: 'Inter', 'Arial', sans-serif;
+}
+
+@media screen and (max-width: 523px) {
+  .page {
+    grid-template-rows: auto 42px auto 48px auto;
+  }
 }

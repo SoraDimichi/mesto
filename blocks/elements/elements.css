@@ -1,5 +1,15 @@
+@import url('./__element/elements__element.css');
+@import url('./__elementTitle/elements__elementTitle.css');
+@import url('./__elementImage/elements__elementImage.css');
+@import url('./__elementLikeButton/elements__elementLikeButton.css');
+@import url('./__elementLikeButtonImage/elements_elementLikeButtonImage.css');
+
 .elements {
+  grid-area: 3 / 1 / 4 / 2;
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, max-content));
-  grid-gap: 20px 19px;
+  grid-gap: 20px 18px;
 }

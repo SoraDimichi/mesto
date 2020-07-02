@@ -1,0 +1,9 @@
+.elements__element {
+  margin: 0;
+  border-radius: 3.5%;
+  display: grid;
+  overflow: hidden;
+  background-color: #fff;
+  grid-template-columns: 21px minmax(185px, max-content) 18px min-content 23px;
+  grid-template-rows: auto 80px;
+}
