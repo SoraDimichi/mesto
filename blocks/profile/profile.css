@@ -14,12 +14,14 @@
 
 @media screen and (max-width: 700px) {
   .profile {
-    grid-template-rows: 54% 14px 1fr 33px auto;
+    grid-template-columns: max-content 28px max-content 20px min-content 1fr 1fr;
+    grid-template-rows: 65px 14px 1fr 33px auto;
   }
 }
 
 @media screen and (max-width: 523px) {
   .profile {
-    grid-template-columns: auto;
+    grid-template-columns: 0.8fr max-content 4px 1.2fr;
+    grid-template-rows: auto 30px auto 11px auto 33px auto;
   }
 }

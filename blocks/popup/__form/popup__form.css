@@ -1,6 +1,4 @@
-
-
-.form {
+.popup__form {
   grid-area: 2 / 2 / 3 / 3;
   display: grid;
   background-color: white;
@@ -10,7 +8,7 @@
 }
 
 @media screen and (max-width: 420px) {
-  .form {
+  .popup__form {
     grid-template-rows: 30px auto 40px auto 31px auto 40px auto 33px;
   }
 }

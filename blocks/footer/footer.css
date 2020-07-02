@@ -9,6 +9,6 @@
 
 @media screen and (max-width: 523px) {
   .footer {
-    grid-template-rows: auto 36px;
+    grid-template-rows: auto 33px;
   }
 }

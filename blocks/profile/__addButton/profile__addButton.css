@@ -27,7 +27,7 @@
 
 @media screen and (max-width: 523px) {
   .profile__addButton {
-    grid-area: 4 / 1 / 5 / 3;
+    grid-area: 7 / 1 / 8 / 5;
     font-size: 2.1rem;
     line-height: 1.26;
   }

@@ -5,7 +5,7 @@
 
 @media screen and (max-width: 523px) {
   .profile__avatar {
-    grid-area: 1 / 1 / 2 / 3;
+    grid-area: 1 / 1 / 2 / 5;
     justify-self: center;
   }
 }

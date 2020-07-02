@@ -10,7 +10,7 @@
 <body class="page">
 
   <header class="header">
-    <img class="header__logo" src="blocks/header/images/__logo/header__logo.svg" alt="Логотип">
+    <img class="header__logo" src="./blocks/header/images/__logo/header__logo.svg" alt="Логотип">
   </header>
 
   <main class="content">
@@ -89,21 +89,17 @@
       <button class="popup__closeButton">
         🞩
       </button>
-
-      <div class="form">
-        <p class="form__title">
+      <div class="popup__form">
+        <p class="popup__formTitle">
           Редактировать профиль
         </p>
-        <!--Линтер хочет, что бы я закрывал labelами инпуты, обязательно ли это делать по кодстайлу и как правильно?-->
-          <input type="text" class="form__inputText form__inputText_typeName">
-          <input type="text" class="form__inputText form__inputText_typeDescription">
-        <button class="form__submitButton form__submitButton_disabled" disabled>
+        <input type="text" title="Имя" class="popup__formInputText popup__formInputText_typeName">
+        <input type="text" title="Описание" class="popup__formInputText popup__formInputText_typeDescription">
+        <button class="popup__formSubmitButton popup__formSubmitButton_disabled" disabled>
           Сохранить
         </button>
       </div>
 
     </div>
-
-  <script src="./blocks/popup/popup.js"></script>
 
 </body>

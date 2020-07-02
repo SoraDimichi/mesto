@@ -1,7 +1,7 @@
 @import url('./_typeDescription/popup__formInputText_typeDescription.css');
-@import url('./_typeName/form__inputText_typeName.css');
+@import url('./_typeName/popup__formInputText_typeName.css');
 
-.form__inputText {
+.popup__formInputText {
   padding: 0 0 8px 0;
   line-height: 17px;
   font-size: 14px;
@@ -12,17 +12,17 @@
   background-color: inherit;
 }
 
-.form__inputText::placeholder {
+.popup__formInputText::placeholder {
   color: #000;
   font-family: 'Inter', 'Arial', sans-serif;
 }
 
-.form__inputText:focus {
+.popup__formInputText:focus {
   outline: 0;
 }
 
 @media screen and (max-width: 420px) {
-  .form__inputText.form__inputText::placeholder {
+  .popup__formInputText::placeholder {
     text-align: center;
     font-size: 0.875rem;
   }

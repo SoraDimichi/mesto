@@ -1,4 +1,4 @@
-.form__title {
+.popup__formTitle {
   color: #000;
   font-weight: 900;
   font-size: 24px;
@@ -8,7 +8,7 @@
 }
 
 @media screen and (max-width: 420px) {
-  .form__title {
+  .popup__formTitle {
     font-size: 19px;
     justify-self: center;
   }
