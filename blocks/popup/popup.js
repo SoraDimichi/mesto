@@ -7,7 +7,6 @@ const formInputDescription = form.querySelector('.popup__formInputText_typeDescr
 const outputName = document.querySelector('.profile__name') //Найдем аутпут имени
 const outputDescription = document.querySelector('.profile__description') //Найдем аутпут описания
 
-
 //Открытие по кнопке с карандашом и запись имени и описания в поле инпутов
 
 const popupOpenButton = document.querySelector('.profile__openPopupButton') // Найдем кнопку с карандашом
@@ -43,49 +42,40 @@ popup.addEventListener('click', closePopupByClickingOverlay) //Повесим ф
 
 //Отправка формы (проверка инпутов не доделана)
 
-const formSubmitButton = form.querySelector('.popup__formSubmitButton') //Найдем кнопку сабмита
+function ChangeNameAndDescription (evt) {
+    evt.preventDefault()
+    if (confirm(`   Вы ввели:
+    Имя: ${formInputName.value}
+    Описание: ${formInputDescription.value}
+    Подтвердите правильность ввовда:`) === true) {
+    evt.preventDefault()
+    outputName.textContent = formInputName.value
+    outputDescription.textContent = formInputDescription.value
+        popupClose()
+    } else {
+        evt.preventDefault()
+    }
+    }
 
-function ChangeNameAndDescription () {
-
-if (confirm(`Вы ввели:
-Имя: ${formInputName.value}
-Описание: ${formInputDescription.value}
-Подтвердите правильность ввовда:`) === true) {
-outputName.textContent = formInputName.value
-outputDescription.textContent = formInputDescription.value
-popupClose()
-} else {
-    debugger
-    return
-}
-}
-
-formSubmitButton.addEventListener('click', ChangeNameAndDescription)
+form.addEventListener('submit', ChangeNameAndDescription)
 
 
-// function formSubmitHandler (event) {
-//     event.preventDefault()
-//     outputName.textContent = formInputName.value
-//     outputDescription.textContent = formInputDescription.value
-// }
-// formSubmitHandler()
+
+
+
 // //Проверка форм на количество символов
 //
-// function formChecker() {
+// const formSubmitButton = form.querySelector('.popup__formSubmitButton') //Найдем кнопку в форме
 //
-//     let proveName = formInputName.addEventListener('keyup', checkName(evt) {
-//         return (formInputName.value.length > 0)
-//     })
-//
-//     let proveDescription = formInputDescription.addEventListener('keyup', checkDescription(evt) {
-//         return (formInputDescription.value.length > 0)
-//     })
-//
-//     if (proveDescription && proveName = true){
-//         return
-//     } else {
-//         formSubmitButton.setAttribute('disabled');
-//         formSubmitButton.classList.add('form__submitButton_disabled')
-//         formSubmitButton.classList.remove('form__submitButton_enabled')
+// function LengthCheck() {
+//     if ((formInputName.value.length !== 0 && formInputDescription.value.length !== 0) === false) {
+//         formSubmitButton.setAttribute('disabled', true)
+//         formSubmitButton.classList.add('popup__formSubmitButton_disabled')
+//         formSubmitButton.classList.remove('popup__FormSubmitButton_enabled')
+//     } else if (((formInputName.value.length !== 0 && formInputDescription.value.length !== 0) === false) {
+//         formSubmitButton.removeAttribute(disabled)
+//         formSubmitButton.classList.add('popup__formSubmitButton_enabled')
+//         formSubmitButton.classList.remove('popup__FormSubmitButton_disabled')
 //     }
 // }
+//     form.addEventListener('keyup', LengthCheck)
