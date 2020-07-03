@@ -1,4 +1,4 @@
-.elements__elementTitle {
+.element__title {
   margin: 0;
   grid-area: 2 / 2 / 3 / 3;
   text-overflow: ellipsis;

@@ -3,6 +3,7 @@
 @import url('./__formInputText/popup__formInputText.css');
 @import url('./__formSubmitButton/popup__formSubmitButton.css');
 @import url('./__closeButton/popup__closeButton.css');
+@import url('./__closeButtonImage/popup__closeButtonImage.css');
 @import url('./_hidden/popup_hidden.css');
 @import url('./_opened/popup_opened.css');
 

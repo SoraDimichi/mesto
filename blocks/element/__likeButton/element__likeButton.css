@@ -1,0 +1,21 @@
+.element__likeButton {
+  grid-area: 2 / 4 / 3 / 5;
+  padding: 0;
+  border: none;
+  outline: none;
+  font: inherit;
+  color: inherit;
+  background: none;
+  align-self: center;
+}
+
+.element__likeButton:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 700px) {
+  .element__likeButton:hover {
+    opacity: 1;
+  }
+}

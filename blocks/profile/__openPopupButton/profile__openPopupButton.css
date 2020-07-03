@@ -15,6 +15,12 @@
   cursor: pointer;
 }
 
+@media screen and (max-width: 700px) {
+  .profile__openPopupButton:hover {
+    opacity: 1;
+  }
+}
+
 @media screen and (max-width: 523px) {
   .profile__openPopupButton {
     grid-area: 3 / 4 / 4 / 5;

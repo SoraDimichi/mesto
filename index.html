@@ -26,61 +26,57 @@
         +
       </button>
     </section>
-    <!--h2 быть не может по следующим причинам
-    0) Секция не обладает заголовком
-    1) становясь ul теряется смысл секции
-    2) нету текста
-    3) список из заголовков фтв
-    4) околопруф докой https://www.w3.org/WAI/tutorials/forms/labels/#using-the-title-attribute
-    -->
+
     <ul class="elements">
-      <li class="elements__element">
-        <img class="elements__elementImage" src="blocks/elements/images/__elementImage/church.png" alt="Церковь">
-        <p class="elements__elementTitle">Карачаевск</p>
-        <button class="elements__elementLikeButton">
-          <img class="elements_elementLikeButtonImage" src="blocks/elements/images/__likeButton/elements__elementLikeButton.svg" alt="Нравится">
+
+      <li class="element">
+        <img class="element__image" src="blocks/element/images/__elementImage/church.png" alt="Церковь">
+        <p class="element__title">Карачаевск</p>
+        <button class="element__likeButton">
+          <img class="element__likeButtonImage" src="blocks/element/images/__likeButton/elements__elementLikeButton.svg" alt="Нравится">
         </button>
       </li>
 
-      <li class="elements__element">
-        <img class="elements__elementImage" src="blocks/elements/images/__elementImage/elbrus.png" alt="Эльбрус">
-        <p class="elements__elementTitle">Гора Эльбрус</p>
-        <button class="elements__elementLikeButton">
-          <img class="elements_elementLikeButtonImage" src="blocks/elements/images/__likeButton/elements__elementLikeButton.svg" alt="Нравится">
+      <li class="element">
+        <img class="element__image" src="blocks/element/images/__elementImage/elbrus.png" alt="Эльбрус">
+        <p class="element__title">Гора Эльбрус</p>
+        <button class="element__likeButton">
+          <img class="element__likeButtonImage" src="blocks/element/images/__likeButton/elements__elementLikeButton.svg" alt="Нравится">
         </button>
       </li>
 
-      <li class="elements__element">
-        <img class="elements__elementImage" src="blocks/elements/images/__elementImage/dombai.png" alt="Домбай">
-        <p class="elements__elementTitle">Домбай</p>
-        <button class="elements__elementLikeButton">
-          <img class="elements_elementLikeButtonImage" src="blocks/elements/images/__likeButton/elements__elementLikeButton.svg" alt="Нравится">
+      <li class="element">
+        <img class="element__image" src="blocks/element/images/__elementImage/dombai.png" alt="Домбай">
+        <p class="element__title">Домбай</p>
+        <button class="element__likeButton">
+          <img class="element__likeButtonImage" src="blocks/element/images/__likeButton/elements__elementLikeButton.svg" alt="Нравится">
         </button>
       </li>
 
-      <li class="elements__element">
-        <img class="elements__elementImage" src="blocks/elements/images/__elementImage/elbrus.png" alt="Эльбрус">
-        <p class="elements__elementTitle">Гора Эльбрус</p>
-        <button class="elements__elementLikeButton">
-          <img class="elements_elementLikeButtonImage" src="blocks/elements/images/__likeButton/elements__elementLikeButton.svg" alt="Нравится">
+      <li class="element">
+        <img class="element__image" src="blocks/element/images/__elementImage/elbrus.png" alt="Эльбрус">
+        <p class="element__title">Гора Эльбрус</p>
+        <button class="element__likeButton">
+          <img class="element__likeButtonImage" src="blocks/element/images/__likeButton/elements__elementLikeButton.svg" alt="Нравится">
         </button>
       </li>
 
-      <li class="elements__element">
-        <img class="elements__elementImage" src="blocks/elements/images/__elementImage/dombai.png" alt="Домбай">
-        <p class="elements__elementTitle">Домбай</p>
-        <button class="elements__elementLikeButton">
-          <img class="elements_elementLikeButtonImage" src="blocks/elements/images/__likeButton/elements__elementLikeButton.svg" alt="Нравится">
+      <li class="element">
+        <img class="element__image" src="blocks/element/images/__elementImage/dombai.png" alt="Домбай">
+        <p class="element__title">Домбай</p>
+        <button class="element__likeButton">
+          <img class="element__likeButtonImage" src="blocks/element/images/__likeButton/elements__elementLikeButton.svg" alt="Нравится">
         </button>
       </li>
 
-      <li class="elements__element">
-        <img class="elements__elementImage" src="blocks/elements/images/__elementImage/church.png" alt="Церковь">
-        <p class="elements__elementTitle">Карачаево-Черкесия</p>
-        <button class="elements__elementLikeButton">
-          <img class="elements_elementLikeButtonImage" src="blocks/elements/images/__likeButton/elements__elementLikeButton.svg" alt="Нравится">
+      <li class="element">
+        <img class="element__image" src="blocks/element/images/__elementImage/church.png" alt="Церковь">
+        <p class="element__title">Карачаево-Черкесия</p>
+        <button class="element__likeButton">
+          <img class="element__likeButtonImage" src="blocks/element/images/__likeButton/elements__elementLikeButton.svg" alt="Нравится">
         </button>
       </li>
+
     </ul>
 
   </main>
@@ -99,7 +95,7 @@
   <div class="popup popup_hidden">
     <!-- Крестик идеально подобран, не буду принципиально менять на свгшку -->
     <button class="popup__closeButton">
-      🞩
+      <img class="popup__closeButtonImage" src="./blocks/popup/images/__closeButtonImage/popup__closeButtonImage.svg" alt="закрыть">
     </button>
     <form class="popup__form">
       <label class="popup__formTitle">
@@ -109,7 +105,6 @@
       <input type="text" title="Описание" class="popup__formInputText popup__formInputText_typeDescription">
       <input type="submit" title="Подтвердить" class="popup__formSubmitButton popup__FormSubmitButton_enabled">
         Сохранить
-      </input>
     </form>
   </div>
 
