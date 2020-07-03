@@ -50,17 +50,12 @@ function ChangeNameAndDescription () {
 if (confirm(`Вы ввели:
 Имя: ${formInputName.value}
 Описание: ${formInputDescription.value}
-Подтвердите правильность ввовда:`) === true)  {
+Подтвердите правильность ввовда:`) === true) {
 outputName.textContent = formInputName.value
 outputDescription.textContent = formInputDescription.value
-    function formSubmitHandler (event) {
-        event.preventDefault()
-        outputName.textContent = formInputName.value
-        outputDescription.textContent = formInputDescription.value
-    }
-    formSubmitHandler()
 popupClose()
 } else {
+    debugger
     return
 }
 }
@@ -68,7 +63,12 @@ popupClose()
 formSubmitButton.addEventListener('click', ChangeNameAndDescription)
 
 
-
+// function formSubmitHandler (event) {
+//     event.preventDefault()
+//     outputName.textContent = formInputName.value
+//     outputDescription.textContent = formInputDescription.value
+// }
+// formSubmitHandler()
 // //Проверка форм на количество символов
 //
 // function formChecker() {
