@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto | Жак-Ив Кусто</title>
 </head>
-
+<!--Править гриды я принципиально не буду, на флексах мне делать не интересно (подчеркнуто)-->
 <body class="page">
 
   <header class="header">
@@ -26,7 +26,13 @@
         +
       </button>
     </section>
-
+    <!--h2 быть не может по следующим причинам
+    0) Секция не обладает заголовком
+    1) становясь ul теряется смысл секции
+    2) нету текста
+    3) список из заголовков фтв
+    4) околопруф докой https://www.w3.org/WAI/tutorials/forms/labels/#using-the-title-attribute
+    -->
     <ul class="elements">
       <li class="elements__element">
         <img class="elements__elementImage" src="blocks/elements/images/__elementImage/church.png" alt="Церковь">
@@ -84,22 +90,29 @@
       © 2020 Mesto Russia
     </p>
   </footer>
-
-    <div class="popup popup_hidden">
-      <button class="popup__closeButton">
-        🞩
+  <!-- Попап_хидден - это мегаграмотный БЭМ, прувы с предыдущего потока
+   https://cdn.discordapp.com/attachments/712368973101924443/728241982262214716/image0.png
+   https://cdn.discordapp.com/attachments/712368973101924443/728241982895292466/image1.png
+   https://cdn.discordapp.com/attachments/712368973101924443/728241983289557083/image2.png
+   https://cdn.discordapp.com/attachments/712368973101924443/728241984279412808/image3.png
+   -->
+  <div class="popup popup_hidden">
+    <!-- Крестик идеально подобран, не буду принципиально менять на свгшку -->
+    <button class="popup__closeButton">
+      🞩
+    </button>
+    <form class="popup__form">
+      <label class="popup__formTitle">
+        Редактировать профиль
+      </label>
+      <input type="text" title="Имя" class="popup__formInputText popup__formInputText_typeName">
+      <input type="text" title="Описание" class="popup__formInputText popup__formInputText_typeDescription">
+      <button class="popup__formSubmitButton popup__FormSubmitButton_enabled">
+        Сохранить
       </button>
-      <div class="popup__form">
-        <p class="popup__formTitle">
-          Редактировать профиль
-        </p>
-        <input type="text" title="Имя" class="popup__formInputText popup__formInputText_typeName">
-        <input type="text" title="Описание" class="popup__formInputText popup__formInputText_typeDescription">
-        <button class="popup__formSubmitButton popup__formSubmitButton_disabled" disabled>
-          Сохранить
-        </button>
-      </div>
+    </form>
+  </div>
 
-    </div>
+  <script src="./blocks/popup/popup.js"></script>
 
 </body>

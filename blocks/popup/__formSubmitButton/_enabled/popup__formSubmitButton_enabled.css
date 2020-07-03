@@ -1,4 +1,4 @@
-.popupForm__submitButton_enabled:hover {
+.popup__FormSubmitButton_enabled:hover {
   opacity: 0.6;
   cursor: pointer;
 }
