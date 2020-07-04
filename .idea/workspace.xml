@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="48154203-f6b2-4228-99b2-01268f98ff6e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -97,7 +98,7 @@
       <workItem from="1593669886054" duration="27555000" />
       <workItem from="1593704723981" duration="31539000" />
       <workItem from="1593757893171" duration="16080000" />
-      <workItem from="1593796361475" duration="6110000" />
+      <workItem from="1593796361475" duration="7675000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1593131393950</created>
@@ -176,7 +177,14 @@
       <option name="project" value="LOCAL" />
       <updated>1593801944728</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Final">
+      <created>1593802484948</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1593802484948</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -204,12 +212,12 @@
       <screen x="0" y="0" width="1920" height="1170" />
     </state>
     <state x="690" y="332" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1170/1920.0.1680.1050@0.0.1920.1170" timestamp="1593797704068" />
-    <state x="585" y="104" key="CommitChangelistDialog2" timestamp="1593801943516">
+    <state x="585" y="104" key="CommitChangelistDialog2" timestamp="1593802484352">
       <screen x="0" y="0" width="1920" height="1170" />
     </state>
     <state x="456" y="91" key="CommitChangelistDialog2/0.0.1680.1020/1680.0.1920.1080@0.0.1680.1020" timestamp="1593761615108" />
     <state x="585" y="93" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1593565042775" />
-    <state x="585" y="104" key="CommitChangelistDialog2/0.0.1920.1170/1920.0.1680.1050@0.0.1920.1170" timestamp="1593801943516" />
+    <state x="585" y="104" key="CommitChangelistDialog2/0.0.1920.1170/1920.0.1680.1050@0.0.1920.1170" timestamp="1593802484352" />
     <state x="585" y="104" key="CommitChangelistDialog2/0.0.1920.1170/1920.1.1680.1050/3600.-41.1920.1080@0.0.1920.1170" timestamp="1593268362800" />
     <state x="2432" y="94" key="CommitChangelistDialog2/0.0.1920.1170/1920.1.1680.1050/3600.-41.1920.1080@1920.1.1680.1050" timestamp="1593158785634" />
     <state x="648" y="296" key="FileChooserDialogImpl" timestamp="1593673169993">
@@ -351,11 +359,11 @@
     </state>
     <state x="461" y="230" key="SettingsEditor/0.0.1920.1170/1920.0.1680.1050@0.0.1920.1170" timestamp="1593113051898" />
     <state x="461" y="230" key="SettingsEditor/0.0.1920.1170/1920.1.1680.1050/3600.-41.1920.1080@0.0.1920.1170" timestamp="1593298616160" />
-    <state x="552" y="318" key="Vcs.Push.Dialog.v2" timestamp="1593801950896">
+    <state x="552" y="318" key="Vcs.Push.Dialog.v2" timestamp="1593802490344">
       <screen x="0" y="0" width="1920" height="1170" />
     </state>
     <state x="552" y="285" key="Vcs.Push.Dialog.v2/0.0.1920.1050@0.0.1920.1050" timestamp="1593560666952" />
-    <state x="552" y="318" key="Vcs.Push.Dialog.v2/0.0.1920.1170/1920.0.1680.1050@0.0.1920.1170" timestamp="1593801950896" />
+    <state x="552" y="318" key="Vcs.Push.Dialog.v2/0.0.1920.1170/1920.0.1680.1050@0.0.1920.1170" timestamp="1593802490344" />
     <state x="552" y="318" key="Vcs.Push.Dialog.v2/0.0.1920.1170/1920.1.1680.1050/3600.-41.1920.1080@0.0.1920.1170" timestamp="1593131424819" />
     <state x="2403" y="286" key="Vcs.Push.Dialog.v2/0.0.1920.1170/1920.1.1680.1050/3600.-41.1920.1080@1920.1.1680.1050" timestamp="1593158804471" />
     <state x="739" y="429" key="cloudConfig.PluginsDialog" timestamp="1593113248629">
