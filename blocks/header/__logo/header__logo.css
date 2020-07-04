@@ -3,7 +3,7 @@
   width: 100%;
 }
 
-@media screen and (max-width: 523px) {
+@media screen and (max-width: 544px) {
   .header__logo {
     grid-area: 2 / 2 / 3 / 3;
     width: 74%;

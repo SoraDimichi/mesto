@@ -4,7 +4,7 @@
   grid-template-rows: auto 51px auto;
 }
 
-@media screen and (max-width: 523px) {
+@media screen and (max-width: 544px) {
   .content {
     grid-template-rows: auto 36px auto;
   }

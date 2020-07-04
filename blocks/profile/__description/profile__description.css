@@ -4,7 +4,7 @@
   font-size: 1.125rem;
 }
 
-@media screen and (max-width: 523px) {
+@media screen and (max-width: 544px) {
   .profile__description {
     grid-area: 5 / 1 / 6 / 5;
     justify-self: center;

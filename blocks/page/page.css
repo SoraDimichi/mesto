@@ -15,7 +15,7 @@
   font-family: 'Inter', 'Arial', sans-serif;
 }
 
-@media screen and (max-width: 523px) {
+@media screen and (max-width: 544px) {
   .page {
     grid-template-rows: auto 42px auto 48px auto;
   }

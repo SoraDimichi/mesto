@@ -8,20 +8,21 @@
 .profile {
   grid-area: 1 / 1 / 2 / 2;
   display: grid;
-  grid-template-columns: max-content 28px max-content 20px min-content 1fr 146px;
-  grid-template-rows: 65px 14px 1fr;
+  grid-template-columns: max-content 28px 292px 66px 1fr 146px;
+  grid-template-rows: 70px 6px 1fr;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 700px) {
   .profile {
-    grid-template-columns: max-content 28px max-content 20px min-content 1fr 1fr;
-    grid-template-rows: 65px 14px 1fr 33px auto;
+    grid-template-columns: max-content 28px 292px 66px 1fr 1fr;
+    grid-template-rows: 70px 6px 1fr 33px auto;
   }
 }
 
-@media screen and (max-width: 523px) {
+@media screen and (max-width: 544px) {
   .profile {
-    grid-template-columns: 0.8fr max-content 4px 1.2fr;
-    grid-template-rows: auto 30px auto 11px auto 33px auto;
+    grid-template-columns: 0.6fr 190px 33px 0.4fr;
+    grid-template-rows: auto 27px auto 8px auto 33px auto;
   }
 }

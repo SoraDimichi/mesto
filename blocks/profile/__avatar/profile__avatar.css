@@ -3,7 +3,7 @@
   border-radius: 50%;
 }
 
-@media screen and (max-width: 523px) {
+@media screen and (max-width: 544px) {
   .profile__avatar {
     grid-area: 1 / 1 / 2 / 5;
     justify-self: center;

@@ -1,13 +1,16 @@
 .profile__openPopupButton {
-  grid-area: 1 / 5 / 2 / 6;
+  grid-area: 1 / 4 / 2 / 5;
   padding: 0;
+  width: 24px;
+  height: 24px;
   border: none;
   outline: none;
   font: inherit;
   color: inherit;
   background: none;
-  justify-self: end;
+  justify-self: center;
   align-self: end;
+  margin: 0 0 9px 0;
 }
 
 .profile__openPopupButton:hover {
@@ -21,9 +24,9 @@
   }
 }
 
-@media screen and (max-width: 523px) {
+@media screen and (max-width: 544px) {
   .profile__openPopupButton {
-    grid-area: 3 / 4 / 4 / 5;
-    justify-self: start;
+    grid-area: 3 / 3 / 4 / 4;
+    margin: 0 0 2px 0;
   }
 }
