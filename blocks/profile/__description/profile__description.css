@@ -1,13 +1,16 @@
 .profile__description {
-  grid-area: 3 / 3 / 4 / 4;
+  grid-area: 3 / 3 / 4 / 6;
   margin: 0;
   font-size: 1.125rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 544px) {
   .profile__description {
     grid-area: 5 / 1 / 6 / 5;
-    justify-self: center;
     font-size: 0.875rem;
+    text-align: center;
   }
 }

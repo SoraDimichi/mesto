@@ -1,6 +1,6 @@
 .profile__addButton {
   user-select: none;
-  grid-area: 1 / 6 / 4 / 7;
+  grid-area: 1 / 7 / 4 / 8;
   border: solid 1px #fff;
   outline: none;
   font: inherit;
@@ -21,7 +21,7 @@
 
 @media screen and (max-width: 700px) {
   .profile__addButton {
-    grid-area: 5 / 1 / 6 / 9;
+    grid-area: 5 / 1 / 6 / 6;
   }
 }
 

@@ -44,9 +44,11 @@ popup.addEventListener('click', closePopupByClickingOverlay) //Повесим ф
 
 function ChangeNameAndDescription (evt) {
     evt.preventDefault()
-    if (confirm(`   Вы ввели:
+    if (confirm(`    Вы ввели:
+    
     Имя: ${formInputName.value}
     Описание: ${formInputDescription.value}
+    
     Подтвердите правильность ввовда:`) === true) {
     evt.preventDefault()
     outputName.textContent = formInputName.value
