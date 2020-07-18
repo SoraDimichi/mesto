@@ -1,8 +1,7 @@
 .popup__closeButton {
   user-select: none;
-  grid-area: 1 / 2 / 2 / 3;
+  grid-area: 1 / 1 / 2 / 3;
   justify-self: end;
-  margin: 0 -31px 0 0;
   padding: 0;
   border: none;
   outline: none;
@@ -10,6 +9,9 @@
   color: inherit;
   background: none;
   cursor: pointer;
+  position: absolute;
+  top: -33px;
+  right: -33px;
 }
 
 .popup__closeButton:hover {
@@ -22,16 +24,10 @@
   }
 }
 
-@media screen and (max-width: 544px) {
-  .popup__closeButton {
-    width: 24px;
-    margin: 0 6px 8px 0;
-    line-height: 0.9;
-  }
-}
-
 @media screen and (max-width: 420px) {
   .popup__closeButton {
-    font-size: 40px;
+    width: 22px;
+    top: -22px;
+    right: -22px;
   }
 }

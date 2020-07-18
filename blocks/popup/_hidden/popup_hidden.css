@@ -1,3 +1,5 @@
 .popup_hidden {
-  visibility: collapse;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.1s linear;
 }

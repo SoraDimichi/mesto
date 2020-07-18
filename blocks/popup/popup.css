@@ -17,5 +17,5 @@
   display: grid;
   justify-content: center;
   align-content: center;
-  grid-template-columns: 19px minmax(min-content, max-content) 19px;
+  grid-template-columns: 40px minmax(min-content, max-content) 40px;
 }

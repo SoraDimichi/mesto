@@ -1,5 +1,5 @@
-@media screen and (max-width: 544px) {
+@media screen and (max-width: 420px) {
   .popup__closeButtonImage {
-    width: 90%;
+    width: 100%;
   }
 }
