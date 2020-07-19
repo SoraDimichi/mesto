@@ -6,6 +6,9 @@
 @import url('./__closeButtonImage/popup__closeButtonImage.css');
 @import url('./_hidden/popup_hidden.css');
 @import url('./_opened/popup_opened.css');
+@import url('./__lightBox/popup__lightBox.css');
+@import url('__lightBoxImage/popup__lightBoxImage.css');
+@import url('__lightBoxFigcaption/popup__lightBoxFigcaption.css');
 
 .popup {
   position: fixed;

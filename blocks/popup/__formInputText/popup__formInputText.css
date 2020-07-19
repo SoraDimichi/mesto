@@ -1,5 +1,5 @@
-@import url('./_typeDescription/popup__formInputText_typeDescription.css');
-@import url('./_typeName/popup__formInputText_typeName.css');
+@import url('./_typeSecondInput/popup__formInputText_typeSecondInput.css');
+@import url('./_typeFistInput/popup__formInputText_typeFirstInput.css');
 
 .popup__formInputText {
   padding: 0 0 8px 0;
@@ -13,7 +13,7 @@
 }
 
 .popup__formInputText::placeholder {
-  color: #000;
+  color: #c4c4c4;
   font-family: 'Inter', 'Arial', sans-serif;
 }
 

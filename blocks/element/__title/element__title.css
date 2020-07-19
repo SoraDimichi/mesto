@@ -10,3 +10,7 @@
   line-height: 1;
   align-self: center;
 }
+
+.element__title:hover {
+  cursor: pointer;
+}

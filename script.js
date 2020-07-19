@@ -1,44 +1,11 @@
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
+//Найдем попап
+const popup = document.querySelector('.popup')
 
-const elements = document.querySelector('.elements')
-
-initialCards.forEach ((el) => {
-    const elementTemplate = document.querySelector('#element').content
-    const element = elementTemplate.querySelector('.element')
-    const elementClone = element.cloneNode(true)
-    elementClone.querySelector('.element__title').textContent = el.name
-    elementClone.querySelector('.element__image').alt = el.name
-    elementClone.querySelector('.element__image').src = el.link
-    elements.append(elementClone)
-})
-
-
-const popup = document.querySelector('.popup') //Найдем попап
+//Функция открытия попапа
+const OpenPopup = () => {
+popup.classList.add('popup_opened')
+popup.classList.remove('popup_hidden')
+}
 
 //функция закрытия попапа
 const popupClose = function () {
@@ -61,6 +28,74 @@ popup.addEventListener('click', (evt) => {
     popupClose()
 })
 
+
+const elements = document.querySelector('.elements')
+
+const generateElement = (name, link) => {
+    // Находим темплейт карточки и клонируем
+    const elementTemplate = document.querySelector('#element').content
+    const element = elementTemplate.querySelector('.element')
+    const elementClone = element.cloneNode(true)
+
+    // Объявляем в константы элементы
+    const elementRemoveButton = elementClone.querySelector('.element__removeButton')
+    const elementLikeButton = elementClone.querySelector('.element__likeButton')
+    const elementTitle = elementClone.querySelector('.element__title')
+    const elementImage = elementClone.querySelector('.element__image')
+
+    // Накидываем значения на аргументы функции
+    elementTitle.textContent = name
+    elementImage.alt = name
+    elementImage.src = link
+
+    //функция удаления карточки на мусорном вердре
+    elementRemoveButton.addEventListener('click', () => {
+        elementClone.remove(elementClone)
+    })
+
+    //функция тоггла лайка на лайкокнопке
+    elementLikeButton.addEventListener('click', () => {
+        const LikeButtonImage = elementLikeButton.querySelector('.element__likeButtonImage')
+        switch (LikeButtonImage.src.includes('element__likeButtonImage.svg')) {
+            case true:
+                LikeButtonImage.src = './blocks/element/images/__likeButton/element__likeButtonImageToggled.svg'
+                break;
+            case false:
+                LikeButtonImage.src = './blocks/element/images/__likeButton/element__likeButtonImage.svg'
+                break;
+        }
+    })
+    //функция создания лайтбокса и параллельно удаления карточки, что бы не возникало конфликтов
+    const elementLiteBoxListeners = elementClone.querySelectorAll('.element__image, .element__title')
+    elementLiteBoxListeners.forEach ((listener) => {
+        listener.addEventListener('click', (evt) => {
+            switch (evt.target !== elementRemoveButton) {
+                case true:
+                    // Находим темплейт лайтбокса и клонируем
+                    const lightBoxTemplate = document.querySelector('#popup__lightBox').content
+                    const lightBox = lightBoxTemplate.querySelector('.popup__lightBox')
+                    const lightBoxClone = lightBox.cloneNode(true)
+                    // Объявляем в константы элементы
+                    const lightBoxFigcaption = lightBoxClone.querySelector('.popup__lightBoxFigcaption')
+                    const lightBoxImage = lightBoxClone.querySelector('.popup__lightBoxImage')
+                    // Накидываем значения на аргументы функции
+                    lightBoxFigcaption.textContent = elementTitle.textContent
+                    lightBoxImage.alt = elementImage.alt
+                    lightBoxImage.src = elementImage.src
+                    // Клонируем лайтбокс
+                    popup.append(lightBoxClone)
+                    // Открываем попап
+                    OpenPopup()
+                    break;
+                case false:
+                    elementClone.remove(elementClone)
+                    break;
+            }
+        })
+    })
+    elements.prepend(elementClone) //вставляем полностью собранную карточку (Не придумал как вращать форму)
+}
+
 // Цепляем на обе кнопки эвентлистенер
 const openPopup = document.querySelectorAll('.profile__openPopupButton, .profile__addButton')
 
@@ -75,21 +110,18 @@ openPopup.forEach ((button) => {
 
         // цепляем на каждый элемент формы константу
         const formTitle = formClone.querySelector('.popup__formTitle')
-        const formFirstInput = formClone.querySelector('.popup__formInputText_typeName')
-        const formSecondInput = formClone.querySelector('.popup__formInputText_typeDescription')
+        const formFirstInput = formClone.querySelector('.popup__formInputText_typeFirstInput')
+        const formSecondInput = formClone.querySelector('.popup__formInputText_typeSecondInput')
         const formSubmitButton = formClone.querySelector('.popup__formSubmitButton')
 
         // Турбопроверка нажатой кнопки
-        const eventTarget = evt.target; // цепляем эвэнт на константу
-        // console.log(eventTarget) // узнаем на какую кнопку кликаем
-
         // Цепляем возможные кнопки на константы
         const editButton = document.querySelector('.profile__openPopupButton')
         const addButton = document.querySelector('.profile__addButton')
 
         // Проверяем какая кнопка нажата и в зависимости от этого генерим формы
 
-        switch (eventTarget) {
+        switch (evt.target) {
             case editButton: // кнопка исправления профиля
                 // Цепанем на константы аутпуты в профиле
                 const nameOutput = document.querySelector('.profile__name')
@@ -114,49 +146,68 @@ openPopup.forEach ((button) => {
                         popupClose()
                     }
                 })
-
-                // и открываем попап
-
-
                 break;
             case addButton: // кнопка добавления карточки
-                            //Заполняем объявленные элементы
+                //Заполняем объявленные элементы
                 formTitle.textContent = 'Новое место'
-                formFirstInput.value = 'Название'
+                formFirstInput.placeholder = 'Название'
                 formFirstInput.title = 'Название'
-                formSecondInput.value = 'Ссылка на картинку'
+                formSecondInput.placeholder = 'Ссылка на картинку'
                 formSecondInput.title = 'Ссылка на картинку'
                 formSubmitButton.value = 'Создать'
 
-                formClone.addEventListener('submit',function (event) {
-                    event.preventDefault()
+                formClone.addEventListener('submit',(evt) => {
+                    evt.preventDefault()
                     if (confirm(`                Вы ввели:
                 Название: ${formFirstInput.value}
                 Ссылку: ${formSecondInput.value}
                 Подтвердите правильность ввовда:`) === true) {
-                        event.preventDefault()
-                        initialCards.unshift({
+                        // Записываем в массив последнее значение (представляем, что это база данных за 300 и нам важно сохранять значения)
+                        initialCards.push({
                             name: formFirstInput.value,
                             link: formSecondInput.value
                         })
-                        elements.innerHTML = ''
-                        initialCards.forEach ((el) => {
-                            const elementTemplate = document.querySelector('#element').content
-                            const element = elementTemplate.querySelector('.element')
-                            const elementClone = element.cloneNode(true)
-                            elementClone.querySelector('.element__title').textContent = el.name
-                            elementClone.querySelector('.element__image').alt = el.name
-                            elementClone.querySelector('.element__image').src = el.link
-                            elements.append(elementClone)
-                        })
+                        const name = initialCards[initialCards.length - 1].name
+                        const link = initialCards[initialCards.length - 1].link
+                        generateElement(name, link)
                         popupClose()
                         }
                 })
-                break;
         }
-
         popup.append(formClone)
-        popup.classList.add('popup_opened')
-        popup.classList.remove('popup_hidden')
+        OpenPopup()
     })
 })
+
+const initialCards = [
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    },
+    {
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+];
+
+// Заполнение карточек из массива
+initialCards.forEach ((el) => {
+    generateElement(el.name, el.link)
+})
+
