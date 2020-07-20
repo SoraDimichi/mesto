@@ -50,10 +50,12 @@ const lightBox = popupTemplate.querySelector('.popup__lightBox')
 // на сколько  я понял - темплейт используется для красоты кодстайла, а аппенды захламляют код (как нам рассказали
 // в тренажере и намекали, что это самый лучший способ).
 // Я очень сильно запутался, пожалуйста, разъясните!
+
 // И просьба - я новичок в JS и вообще никогда код не писал, могли бы вы указать на ошибки кодстайла, спасибо.
+// Наставник нам сказал не ставить (подчеркнуто) ; в конце выражений, аргументируя это тем, что так уже не делают.
+// Отступы я вроде бы сделал
 
 const generateElement = (name, link) => {
-
     //Клонируем темплейт карточки
     const elementClone = element.cloneNode(true)
 
@@ -161,18 +163,16 @@ const addButton = document.querySelector('.profile__addButton') //Находим
 
 //Открытие формы добавления карточки по кнопке
 addButton.addEventListener('click', () => {
-
-    // -------------------------------------------------------------------------------------------------- //
-
-    const formClone = form.cloneNode(true) // Клонируем форму
+    // ------------------------------------------------------------------------------------------------------------- //
+    // Клонируем форму
+    const formClone = form.cloneNode(true)
 
     // цепляем на каждый элемент формы константу
     const formTitle = formClone.querySelector('.popup__formTitle')
     const formFirstInput = formClone.querySelector('.popup__formInputText_typeFirstInput')
     const formSecondInput = formClone.querySelector('.popup__formInputText_typeSecondInput')
     const formSubmitButton = formClone.querySelector('.popup__formSubmitButton')
-
-    // Каким образом мне избавиться от задвоения кода в addButton и editButton? Через массив? Есть ли другой способ?
+    // Каким образом мне избавиться от задвоения кода в addButton и editButton? Через массив? Есть ли другой способ? //
 
     // Заполняем значения
     formTitle.textContent = 'Новое место'
@@ -240,6 +240,7 @@ const initialCards = [
 
 // Заполнение карточек из массива
 initialCards.forEach ((el) => {
-    elements.prepend(generateElement(el.name, el.link)) //вставляем полностью собранную карточку
+    //вставляем полностью собранную карточку
+    elements.prepend(generateElement(el.name, el.link))
 })
 
