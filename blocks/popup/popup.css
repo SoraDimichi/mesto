@@ -4,13 +4,13 @@
 @import url('./__formSubmitButton/popup__formSubmitButton.css');
 @import url('./__closeButton/popup__closeButton.css');
 @import url('./__closeButtonImage/popup__closeButtonImage.css');
-@import url('./_hidden/popup_hidden.css');
-@import url('./_opened/popup_opened.css');
 @import url('./__lightBox/popup__lightBox.css');
 @import url('__lightBoxImage/popup__lightBoxImage.css');
 @import url('__lightBoxFigcaption/popup__lightBoxFigcaption.css');
 
 .popup {
+  visibility: hidden;
+  opacity: 0;
   position: fixed;
   top: 0;
   left: 0;

@@ -2,20 +2,19 @@
 const popup = document.querySelector('.popup')
 
 //Функция открытия попапа
-const OpenPopup = () => {
-popup.classList.add('popup_opened')
-popup.classList.remove('popup_hidden')
+const popupOpen = () => {
+    popup.classList.toggle('popup_opened')
 }
 
 //функция закрытия попапа
 const popupClose = function () {
-    popup.classList.add('popup_hidden')
-    popup.classList.remove('popup_opened')
     popup.lastChild.remove()
+    popup.classList.toggle('popup_opened')
 }
 
+// Найдем кнопку крестик
+const popupCloseButton = popup.querySelector('.popup__closeButton')
 //Закрытие по крестику
-const popupCloseButton = popup.querySelector('.popup__closeButton') // Найдем кнопку крестик
 popupCloseButton.addEventListener('click', () => {
     popupClose()
 })
@@ -28,13 +27,34 @@ popup.addEventListener('click', (evt) => {
     popupClose()
 })
 
-
+// Находим родитель куда будут вставляться карточки
 const elements = document.querySelector('.elements')
 
+// Находим темплейт карточки
+const elementTemplate = document.querySelector('#element').content
+const element = elementTemplate.querySelector('.element')
+
+// Находим темплейт попапа
+const popupTemplate = document.querySelector('#popupTemplate').content
+// Находим лайтбокс внутри темплейта попапа
+const lightBox = popupTemplate.querySelector('.popup__lightBox')
+
+// Создавать попап просмотра для каждой карточки очень не рационально, следует использовать один универсальный попап
+// и при его открытии изменять атрибуты (картинка, описание)
+
+// Я совершенно не понял почему иррационально, если по факту все равно будет что то создаваться.
+// Я сделал как вас понял - объединил лайтбокс и форму в один темплейт. (Мне это очень не нравится)
+// Объясните подробно, что мне нужно сделать? Генерить из темплейта или генерить просто через апенды?
+// Так то я мог и форму без темплейта сделать, тупо вставить её во внутрь попапа и менять значения внутри,
+// и карточки в том числе - сделать пустую карточку и копировать её клоном,
+// на сколько  я понял - темплейт используется для красоты кодстайла, а аппенды захламляют код (как нам рассказали
+// в тренажере и намекали, что это самый лучший способ).
+// Я очень сильно запутался, пожалуйста, разъясните!
+// И просьба - я новичок в JS и вообще никогда код не писал, могли бы вы указать на ошибки кодстайла, спасибо.
+
 const generateElement = (name, link) => {
-    // Находим темплейт карточки и клонируем
-    const elementTemplate = document.querySelector('#element').content
-    const element = elementTemplate.querySelector('.element')
+
+    //Клонируем темплейт карточки
     const elementClone = element.cloneNode(true)
 
     // Объявляем в константы элементы
@@ -56,128 +76,140 @@ const generateElement = (name, link) => {
     //функция тоггла лайка на лайкокнопке
     elementLikeButton.addEventListener('click', () => {
         const LikeButtonImage = elementLikeButton.querySelector('.element__likeButtonImage')
-        switch (LikeButtonImage.src.includes('element__likeButtonImage.svg')) {
-            case true:
-                LikeButtonImage.src = './blocks/element/images/__likeButton/element__likeButtonImageToggled.svg'
-                break;
-            case false:
-                LikeButtonImage.src = './blocks/element/images/__likeButton/element__likeButtonImage.svg'
-                break;
-        }
+        LikeButtonImage.classList.toggle('element__likeButtonImage_toggled')
+        //подскажите пожалуйста, как сделать через toggle замену картинки по src, я не разобрался.
+        //потому что через задний фон - портится логика, имхо - это не правильно, если я сделал правильно.
     })
-    //функция создания лайтбокса и параллельно удаления карточки, что бы не возникало конфликтов
+
+    //Функция удаления карточки
+    elementRemoveButton.addEventListener('click', () => {
+        elementClone.remove(elementClone)
+    })
+
+    //функция создания лайтбокса
     const elementLiteBoxListeners = elementClone.querySelectorAll('.element__image, .element__title')
     elementLiteBoxListeners.forEach ((listener) => {
         listener.addEventListener('click', (evt) => {
-            switch (evt.target !== elementRemoveButton) {
-                case true:
-                    // Находим темплейт лайтбокса и клонируем
-                    const lightBoxTemplate = document.querySelector('#popup__lightBox').content
-                    const lightBox = lightBoxTemplate.querySelector('.popup__lightBox')
-                    const lightBoxClone = lightBox.cloneNode(true)
-                    // Объявляем в константы элементы
-                    const lightBoxFigcaption = lightBoxClone.querySelector('.popup__lightBoxFigcaption')
-                    const lightBoxImage = lightBoxClone.querySelector('.popup__lightBoxImage')
-                    // Накидываем значения на аргументы функции
-                    lightBoxFigcaption.textContent = elementTitle.textContent
-                    lightBoxImage.alt = elementImage.alt
-                    lightBoxImage.src = elementImage.src
-                    // Клонируем лайтбокс
-                    popup.append(lightBoxClone)
-                    // Открываем попап
-                    OpenPopup()
-                    break;
-                case false:
-                    elementClone.remove(elementClone)
-                    break;
+            if (evt.target !== elementRemoveButton) {
+                // Клонируем  лайтбокс из темплейта
+                const lightBoxClone = lightBox.cloneNode(true)
+
+                // Объявляем в константы элементы
+                const lightBoxFigcaption = lightBoxClone.querySelector('.popup__lightBoxFigcaption')
+                const lightBoxImage = lightBoxClone.querySelector('.popup__lightBoxImage')
+
+                // Накидываем значения на аргументы функции
+                lightBoxFigcaption.textContent = elementTitle.textContent
+                lightBoxImage.alt = elementImage.alt
+                lightBoxImage.src = elementImage.src
+
+                // Клонируем лайтбокс
+                popup.append(lightBoxClone)
+
+                // Открываем попап
+                popupOpen()
             }
         })
     })
-    elements.prepend(elementClone) //вставляем полностью собранную карточку (Не придумал как вращать форму)
+
+    //возвращаем сгенерированную карточку
+    return elementClone
 }
 
-// Цепляем на обе кнопки эвентлистенер
-const openPopup = document.querySelectorAll('.profile__openPopupButton, .profile__addButton')
+// Находим форму внутри темплейта попапа
+const form = popupTemplate.querySelector('.popup__form')
 
-openPopup.forEach ((button) => {
-    button.addEventListener('click', (evt) => {
-        // evt.target.setAttribute('disabled', true); // выключаем кнопку по нажатию
-        const formTemplate = document.querySelector('#popup__form').content // Находим всё внутри тэмплэйта формы
-        const form = formTemplate.querySelector('.popup__form') // Находим форму
-        const formClone = form.cloneNode(true) // Клонируем форму
+// Цепанем на константы аутпуты в профиле
+const nameOutput = document.querySelector('.profile__name')
+const descriptionOutput = document.querySelector('.profile__description')
 
-        // Генерим форму
+const editButton = document.querySelector('.profile__openPopupButton') //Находим кнопку редактирования профиля
 
-        // цепляем на каждый элемент формы константу
-        const formTitle = formClone.querySelector('.popup__formTitle')
-        const formFirstInput = formClone.querySelector('.popup__formInputText_typeFirstInput')
-        const formSecondInput = formClone.querySelector('.popup__formInputText_typeSecondInput')
-        const formSubmitButton = formClone.querySelector('.popup__formSubmitButton')
+// Открытие формы исправления профиля по кнопке
+editButton.addEventListener('click', () => {
+    // Клонируем форму
+    const formClone = form.cloneNode(true)
 
-        // Турбопроверка нажатой кнопки
-        // Цепляем возможные кнопки на константы
-        const editButton = document.querySelector('.profile__openPopupButton')
-        const addButton = document.querySelector('.profile__addButton')
+    // цепляем на каждый элемент формы константу
+    const formTitle = formClone.querySelector('.popup__formTitle')
+    const formFirstInput = formClone.querySelector('.popup__formInputText_typeFirstInput')
+    const formSecondInput = formClone.querySelector('.popup__formInputText_typeSecondInput')
+    const formSubmitButton = formClone.querySelector('.popup__formSubmitButton')
 
-        // Проверяем какая кнопка нажата и в зависимости от этого генерим формы
+    // вставляем значения
+    formTitle.textContent = 'Редактировать профиль'
+    formFirstInput.value = nameOutput.textContent
+    formSecondInput.value = descriptionOutput.textContent
+    formSubmitButton.value = 'Отправить'
 
-        switch (evt.target) {
-            case editButton: // кнопка исправления профиля
-                // Цепанем на константы аутпуты в профиле
-                const nameOutput = document.querySelector('.profile__name')
-                const descriptionOutput = document.querySelector('.profile__description')
-
-                //Заполняем объявленные элементы
-                formTitle.textContent = 'Редактировать профиль'
-                formFirstInput.value = nameOutput.textContent
-                formSecondInput.value = descriptionOutput.textContent
-                formSubmitButton.value = 'Отправить'
-                // Создаем клон
-
-                // Вешаем эвэнт листенер на сабмит
-                formClone.addEventListener('submit',function (event) {
-                    event.preventDefault()
-                    if (confirm(`                Вы ввели:
-                Имя: ${formFirstInput.value}
-                Описание: ${formSecondInput.value}
-                Подтвердите правильность ввовда:`) === true) {
-                        nameOutput.textContent = formFirstInput.value
-                        descriptionOutput.textContent = formSecondInput.value
-                        popupClose()
-                    }
-                })
-                break;
-            case addButton: // кнопка добавления карточки
-                //Заполняем объявленные элементы
-                formTitle.textContent = 'Новое место'
-                formFirstInput.placeholder = 'Название'
-                formFirstInput.title = 'Название'
-                formSecondInput.placeholder = 'Ссылка на картинку'
-                formSecondInput.title = 'Ссылка на картинку'
-                formSubmitButton.value = 'Создать'
-
-                formClone.addEventListener('submit',(evt) => {
-                    evt.preventDefault()
-                    if (confirm(`                Вы ввели:
-                Название: ${formFirstInput.value}
-                Ссылку: ${formSecondInput.value}
-                Подтвердите правильность ввовда:`) === true) {
-                        // Записываем в массив последнее значение (представляем, что это база данных за 300 и нам важно сохранять значения)
-                        initialCards.push({
-                            name: formFirstInput.value,
-                            link: formSecondInput.value
-                        })
-                        const name = initialCards[initialCards.length - 1].name
-                        const link = initialCards[initialCards.length - 1].link
-                        generateElement(name, link)
-                        popupClose()
-                        }
-                })
-        }
-        popup.append(formClone)
-        OpenPopup()
+    // редактирование профиля по сабмиту
+    formClone.addEventListener('submit', function (event) {
+        event.preventDefault()
+        nameOutput.textContent = formFirstInput.value
+        descriptionOutput.textContent = formSecondInput.value
+        popupClose()
     })
+
+    //вставляем форму в попап
+    popup.append(formClone)
+
+    //Открываем попап
+    popupOpen()
 })
+
+const addButton = document.querySelector('.profile__addButton') //Находим кнопку добавления карточки
+
+//Открытие формы добавления карточки по кнопке
+addButton.addEventListener('click', () => {
+
+    // -------------------------------------------------------------------------------------------------- //
+
+    const formClone = form.cloneNode(true) // Клонируем форму
+
+    // цепляем на каждый элемент формы константу
+    const formTitle = formClone.querySelector('.popup__formTitle')
+    const formFirstInput = formClone.querySelector('.popup__formInputText_typeFirstInput')
+    const formSecondInput = formClone.querySelector('.popup__formInputText_typeSecondInput')
+    const formSubmitButton = formClone.querySelector('.popup__formSubmitButton')
+
+    // Каким образом мне избавиться от задвоения кода в addButton и editButton? Через массив? Есть ли другой способ?
+
+    // Заполняем значения
+    formTitle.textContent = 'Новое место'
+    formFirstInput.placeholder = 'Название'
+    formFirstInput.title = 'Название'
+    formSecondInput.placeholder = 'Ссылка на картинку'
+    formSecondInput.title = 'Ссылка на картинку'
+    formSubmitButton.value = 'Создать'
+
+    // Создание карточки по сабмиту
+    formClone.addEventListener('submit',(evt) => {
+        evt.preventDefault()
+
+        // Записываем в массив последнее значение (представляем, что это база данных за 300 и нам важно сохранять значения)
+        initialCards.push({
+            name: formFirstInput.value,
+            link: formSecondInput.value
+        })
+
+        // Вставляем их в карточку
+        const name = initialCards[initialCards.length - 1].name
+        const link = initialCards[initialCards.length - 1].link
+
+        //вставляем полностью собранную карточку
+        elements.prepend(generateElement(name, link))
+
+        //Закрываем попап
+        popupClose()
+    })
+
+    //вставляем форму в попап
+    popup.append(formClone)
+
+    //Открываем попап
+    popupOpen()
+})
+
 
 const initialCards = [
     {
@@ -208,6 +240,6 @@ const initialCards = [
 
 // Заполнение карточек из массива
 initialCards.forEach ((el) => {
-    generateElement(el.name, el.link)
+    elements.prepend(generateElement(el.name, el.link)) //вставляем полностью собранную карточку
 })
 

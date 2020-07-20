@@ -2,6 +2,7 @@
 @import url('./__image/element__image.css');
 @import url('./__likeButton/element__likeButton.css');
 @import url('./__likeButtonImage/element__likeButtonImage.css');
+@import url('./__likeButtonImage/_toggled/element__likeButtonImage.css');
 @import url('./__removeButton/element__removeButton.css');
 @import url('./__removeButtonImage/element__removeButtonImage.css');
 
