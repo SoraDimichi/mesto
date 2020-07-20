@@ -1,216 +1,4 @@
-//Найдем попап
-const popup = document.querySelector('.popup')
-
-//Функция открытия попапа
-const popupOpen = () => {
-    popup.classList.toggle('popup_opened')
-}
-
-//функция закрытия попапа
-const popupClose = function () {
-    popup.lastChild.remove()
-    popup.classList.toggle('popup_opened')
-}
-
-// Найдем кнопку крестик
-const popupCloseButton = popup.querySelector('.popup__closeButton')
-//Закрытие по крестику
-popupCloseButton.addEventListener('click', () => {
-    popupClose()
-})
-
-//Закрытие при клике по любому месту кроме popup__form
-popup.addEventListener('click', (evt) => {
-    if (evt.target !== evt.currentTarget) {
-        return
-    }
-    popupClose()
-})
-
-// Находим родитель куда будут вставляться карточки
-const elements = document.querySelector('.elements')
-
-// Находим темплейт карточки
-const elementTemplate = document.querySelector('#element').content
-const element = elementTemplate.querySelector('.element')
-
-// Находим темплейт попапа
-const popupTemplate = document.querySelector('#popupTemplate').content
-// Находим лайтбокс внутри темплейта попапа
-const lightBox = popupTemplate.querySelector('.popup__lightBox')
-
-// Создавать попап просмотра для каждой карточки очень не рационально, следует использовать один универсальный попап
-// и при его открытии изменять атрибуты (картинка, описание)
-
-// Я совершенно не понял почему иррационально, если по факту все равно будет что то создаваться.
-// Я сделал как вас понял - объединил лайтбокс и форму в один темплейт. (Мне это очень не нравится)
-// Объясните подробно, что мне нужно сделать? Генерить из темплейта или генерить просто через апенды?
-// Так то я мог и форму без темплейта сделать, тупо вставить её во внутрь попапа и менять значения внутри,
-// и карточки в том числе - сделать пустую карточку и копировать её клоном,
-// на сколько  я понял - темплейт используется для красоты кодстайла, а аппенды захламляют код (как нам рассказали
-// в тренажере и намекали, что это самый лучший способ).
-// Я очень сильно запутался, пожалуйста, разъясните!
-
-// И просьба - я новичок в JS и вообще никогда код не писал, могли бы вы указать на ошибки кодстайла, спасибо.
-// Наставник нам сказал не ставить (подчеркнуто) ; в конце выражений, аргументируя это тем, что так уже не делают.
-// Отступы я вроде бы сделал
-
-const generateElement = (name, link) => {
-    //Клонируем темплейт карточки
-    const elementClone = element.cloneNode(true)
-
-    // Объявляем в константы элементы
-    const elementRemoveButton = elementClone.querySelector('.element__removeButton')
-    const elementLikeButton = elementClone.querySelector('.element__likeButton')
-    const elementTitle = elementClone.querySelector('.element__title')
-    const elementImage = elementClone.querySelector('.element__image')
-
-    // Накидываем значения на аргументы функции
-    elementTitle.textContent = name
-    elementImage.alt = name
-    elementImage.src = link
-
-    //функция удаления карточки на мусорном вердре
-    elementRemoveButton.addEventListener('click', () => {
-        elementClone.remove(elementClone)
-    })
-
-    //функция тоггла лайка на лайкокнопке
-    elementLikeButton.addEventListener('click', () => {
-        const LikeButtonImage = elementLikeButton.querySelector('.element__likeButtonImage')
-        LikeButtonImage.classList.toggle('element__likeButtonImage_toggled')
-        //подскажите пожалуйста, как сделать через toggle замену картинки по src, я не разобрался.
-        //потому что через задний фон - портится логика, имхо - это не правильно, если я сделал правильно.
-    })
-
-    //Функция удаления карточки
-    elementRemoveButton.addEventListener('click', () => {
-        elementClone.remove(elementClone)
-    })
-
-    //функция создания лайтбокса
-    const elementLiteBoxListeners = elementClone.querySelectorAll('.element__image, .element__title')
-    elementLiteBoxListeners.forEach ((listener) => {
-        listener.addEventListener('click', (evt) => {
-            if (evt.target !== elementRemoveButton) {
-                // Клонируем  лайтбокс из темплейта
-                const lightBoxClone = lightBox.cloneNode(true)
-
-                // Объявляем в константы элементы
-                const lightBoxFigcaption = lightBoxClone.querySelector('.popup__lightBoxFigcaption')
-                const lightBoxImage = lightBoxClone.querySelector('.popup__lightBoxImage')
-
-                // Накидываем значения на аргументы функции
-                lightBoxFigcaption.textContent = elementTitle.textContent
-                lightBoxImage.alt = elementImage.alt
-                lightBoxImage.src = elementImage.src
-
-                // Клонируем лайтбокс
-                popup.append(lightBoxClone)
-
-                // Открываем попап
-                popupOpen()
-            }
-        })
-    })
-
-    //возвращаем сгенерированную карточку
-    return elementClone
-}
-
-// Находим форму внутри темплейта попапа
-const form = popupTemplate.querySelector('.popup__form')
-
-// Цепанем на константы аутпуты в профиле
-const nameOutput = document.querySelector('.profile__name')
-const descriptionOutput = document.querySelector('.profile__description')
-
-const editButton = document.querySelector('.profile__openPopupButton') //Находим кнопку редактирования профиля
-
-// Открытие формы исправления профиля по кнопке
-editButton.addEventListener('click', () => {
-    // Клонируем форму
-    const formClone = form.cloneNode(true)
-
-    // цепляем на каждый элемент формы константу
-    const formTitle = formClone.querySelector('.popup__formTitle')
-    const formFirstInput = formClone.querySelector('.popup__formInputText_typeFirstInput')
-    const formSecondInput = formClone.querySelector('.popup__formInputText_typeSecondInput')
-    const formSubmitButton = formClone.querySelector('.popup__formSubmitButton')
-
-    // вставляем значения
-    formTitle.textContent = 'Редактировать профиль'
-    formFirstInput.value = nameOutput.textContent
-    formSecondInput.value = descriptionOutput.textContent
-    formSubmitButton.value = 'Отправить'
-
-    // редактирование профиля по сабмиту
-    formClone.addEventListener('submit', function (event) {
-        event.preventDefault()
-        nameOutput.textContent = formFirstInput.value
-        descriptionOutput.textContent = formSecondInput.value
-        popupClose()
-    })
-
-    //вставляем форму в попап
-    popup.append(formClone)
-
-    //Открываем попап
-    popupOpen()
-})
-
-const addButton = document.querySelector('.profile__addButton') //Находим кнопку добавления карточки
-
-//Открытие формы добавления карточки по кнопке
-addButton.addEventListener('click', () => {
-    // ------------------------------------------------------------------------------------------------------------- //
-    // Клонируем форму
-    const formClone = form.cloneNode(true)
-
-    // цепляем на каждый элемент формы константу
-    const formTitle = formClone.querySelector('.popup__formTitle')
-    const formFirstInput = formClone.querySelector('.popup__formInputText_typeFirstInput')
-    const formSecondInput = formClone.querySelector('.popup__formInputText_typeSecondInput')
-    const formSubmitButton = formClone.querySelector('.popup__formSubmitButton')
-    // Каким образом мне избавиться от задвоения кода в addButton и editButton? Через массив? Есть ли другой способ? //
-
-    // Заполняем значения
-    formTitle.textContent = 'Новое место'
-    formFirstInput.placeholder = 'Название'
-    formFirstInput.title = 'Название'
-    formSecondInput.placeholder = 'Ссылка на картинку'
-    formSecondInput.title = 'Ссылка на картинку'
-    formSubmitButton.value = 'Создать'
-
-    // Создание карточки по сабмиту
-    formClone.addEventListener('submit',(evt) => {
-        evt.preventDefault()
-
-        // Записываем в массив последнее значение (представляем, что это база данных за 300 и нам важно сохранять значения)
-        initialCards.push({
-            name: formFirstInput.value,
-            link: formSecondInput.value
-        })
-
-        // Вставляем их в карточку
-        const name = initialCards[initialCards.length - 1].name
-        const link = initialCards[initialCards.length - 1].link
-
-        //вставляем полностью собранную карточку
-        elements.prepend(generateElement(name, link))
-
-        //Закрываем попап
-        popupClose()
-    })
-
-    //вставляем форму в попап
-    popup.append(formClone)
-
-    //Открываем попап
-    popupOpen()
-})
-
-
+// Массив карточек по умолчанию
 const initialCards = [
     {
         name: 'Байкал',
@@ -238,9 +26,207 @@ const initialCards = [
     },
 ];
 
+const editButton = document.querySelector('.profile__openPopupButton') // Находим кнопку редактирования профиля
+const addButton = document.querySelector('.profile__addButton') // Находим кнопку добавления карточки
+const elements = document.querySelector('.elements') // Находим родитель куда будут вставляться карточки
+
+// Цепанем на константы аутпуты в профиле
+const nameOutput = document.querySelector('.profile__name')
+const descriptionOutput = document.querySelector('.profile__description')
+
+// Находим темплейт карточки
+const elementTemplate = document.querySelector('#element').content
+const element = elementTemplate.querySelector('.element')
+
+// Найдем попап
+const popup = document.querySelector('.popup')
+// Крестик закрытия попапа
+const popupCloseButton = popup.querySelector('.popup__closeButton')
+
+// Находим форму редактирования профиля внутри попапа
+const formEditProfile = popup.querySelector('.popup__form_editProfile')
+// Цепляем на каждый элемент формы константу
+const formEditProfileFirstInput = formEditProfile.querySelector('.popup__formInputText_firstInput')
+const formEditProfileSecondInput = formEditProfile.querySelector('.popup__formInputText_secondInput')
+
+const formAddElement = popup.querySelector('.popup__form_addElement') // Находим форму добавления карточки внутри попапа
+// Цепляем на каждый элемент формы константу
+const formAddElementFirstInput = formAddElement.querySelector('.popup__formInputText_firstInput')
+const formAddElementSecondInput = formAddElement.querySelector('.popup__formInputText_secondInput')
+
+// Находим лайтбокс внутри попапа
+const lightBox = popup.querySelector('.popup__lightBox')
+// Объявляем все элементы лайтбокса
+const lightBoxImage = lightBox.querySelector('.popup__lightBoxImage')
+const lightBoxFigcaption = lightBox.querySelector('.popup__lightBoxFigcaption')
+
+
+// Функция открытия попапа
+const popupToggle = () => {
+    popup.classList.toggle('popup_opened')
+}
+
+// Функция закрытия контейнеров попапа
+const popupClosePopupContainers = () => {
+    // Закроем все контейнеры разом, что бы не возникали конфликты
+    formAddElement.classList.remove('popup__form_opened')
+    formEditProfile.classList.remove('popup__form_opened')
+    lightBox.classList.remove('popup__lightBox_opened')
+
+    // Обнулим значение формы добавления карточки, если что то вводили до этого
+    formAddElementFirstInput.value = ''
+    formAddElementSecondInput.value = ''
+}
+// Закрытие по крестику
+popupCloseButton.addEventListener('click', () => {
+    popupToggle()
+    popupClosePopupContainers()
+})
+// Мне не нравится не то как я сейчас сделал, ни создавать родителей с классом .popup__container, внутри которых будет и
+// содержимое, получается нужно будет много тогглов прописывать. Допускаю вероятность, что я протупил и не обнаружил
+// логику тогглов, но тогда бы всеравно пришлось плодить функции тогглов.
+// Зато одна костыльная функция - дешево и сердито, как ковровая бомбардировка.
+// Скажите как правильно, я исправлю.
+// Спасибо за ваши ревью и ответы!
+
+// Закрытие при клике по любому месту кроме popup__form
+popup.addEventListener('click', (evt) => {
+    if (evt.target !== evt.currentTarget) {
+        return
+    }
+    popupToggle()
+    popupClosePopupContainers()
+})
+
+// Открытие формы исправления профиля по кнопке
+editButton.addEventListener('click', () => {
+
+    // Вставляем значения
+    formEditProfileFirstInput.value = nameOutput.textContent
+    formEditProfileFirstInput.placeholder = nameOutput.textContent
+    formEditProfileSecondInput.value = descriptionOutput.textContent
+    formEditProfileSecondInput.placeholder = nameOutput.textContent
+
+    // Открываем попап
+    popupToggle()
+
+    // Открываем форму
+    formEditProfile.classList.add('popup__form_opened')
+})
+
+
+// Открытие формы добавления карточки по кнопке
+addButton.addEventListener('click', () => {
+
+    // Открываем попап
+    popupToggle()
+
+    // Открываем форму
+    formAddElement.classList.add('popup__form_opened')
+})
+
+// Функция создающая карточку
+const generateElement = (name, link) => {
+    // Клонируем темплейт карточки
+    const elementClone = element.cloneNode(true)
+
+    // Объявляем в константы элементы
+    const elementRemoveButton = elementClone.querySelector('.element__removeButton')
+    const elementLikeButton = elementClone.querySelector('.element__likeButton')
+    const elementTitle = elementClone.querySelector('.element__title')
+    const elementImage = elementClone.querySelector('.element__image')
+
+    // Накидываем значения на аргументы функции
+    elementTitle.textContent = name
+    elementImage.alt = name
+    elementImage.src = link
+
+    // Функция удаления карточки на мусорном вердре
+    elementRemoveButton.addEventListener('click', () => {
+        elementClone.remove(elementClone)
+    })
+
+    // Функция тоггла лайка на лайкокнопке
+    elementLikeButton.addEventListener('click', () => {
+        const LikeButtonImage = elementLikeButton.querySelector('.element__likeButtonImage')
+        LikeButtonImage.classList.toggle('element__likeButtonImage_toggled')
+        //подскажите пожалуйста, как сделать через toggle замену картинки по src, я не разобрался.
+        //потому что через задний фон - портится логика, имхо - это не правильно, должна меняться картинка, а не фон.
+        // Как сделать правильно?
+        // !
+        // !
+        // !
+        //Вы не увидели этот коммент в прошлый раз
+    })
+
+    // Функция удаления карточки
+    elementRemoveButton.addEventListener('click', () => {
+        elementClone.remove(elementClone)
+    })
+
+    // функция создания лайтбокса
+    const elementLiteBoxListeners = elementClone.querySelectorAll('.element__image, .element__title')
+    elementLiteBoxListeners.forEach ((listener) => {
+        listener.addEventListener('click', (evt) => {
+            if (evt.target !== elementRemoveButton) {
+                // Накидываем значения на аргументы функции
+                lightBoxFigcaption.textContent = elementTitle.textContent
+                lightBoxImage.alt = elementImage.alt
+                lightBoxImage.src = elementImage.src
+
+                // Открываем попап
+                popupToggle()
+
+                // Открываем лайтбокс
+                lightBox.classList.add('popup__lightBox_opened')
+            }
+        })
+    })
+
+    //возвращаем сгенерированную карточку
+    return elementClone
+}
+
+// Редактирование профиля по сабмиту
+formEditProfile.addEventListener('submit',  (evt) => {
+    evt.preventDefault()
+
+    // Переносим значения из профиля
+    nameOutput.textContent = formEditProfileFirstInput.value
+    descriptionOutput.textContent = formEditProfileSecondInput.value
+
+    // Закрываем попап
+    popupToggle()
+
+    // Закрываем форму
+    formEditProfile.classList.remove('popup__form_opened')
+})
+
+// Создание карточки по сабмиту
+formAddElement.addEventListener('submit',(evt) => {
+    evt.preventDefault()
+
+    // Объявляем имя и ссылку в константы
+    const name = formAddElementFirstInput.value
+    const link = formAddElementSecondInput.value
+
+    // Вставляем полностью собранную карточку
+    elements.prepend(generateElement(name, link))
+
+    // Обнулим значения формы для следующего вызова
+    formAddElementFirstInput.value = ''
+    formAddElementSecondInput.value = ''
+
+    // Закрываем попап
+    popupToggle()
+
+    // Закрываем форму
+    formAddElement.classList.remove('popup__form_opened')
+})
+
 // Заполнение карточек из массива
 initialCards.forEach ((el) => {
+
     //вставляем полностью собранную карточку
     elements.prepend(generateElement(el.name, el.link))
 })
-

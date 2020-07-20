@@ -1,4 +1,5 @@
 .popup__lightBox {
   grid-area: 2 / 2 / 3 / 3;
   margin: 5px;
+  display: none;
 }

@@ -39,26 +39,27 @@
     </p>
   </footer>
 
-  <div class="popup popup_hidden">
+  <div class="popup">
     <button class="popup__closeButton">
       <img class="popup__closeButtonImage" src="./images/__closeButtonImage/popup__closeButtonImage.svg" alt="закрыть">
     </button>
-
-  </div>
-
-
-  <template id="popupTemplate">
+    <form class="popup__form popup__form_editProfile">
+      <label class="popup__formTitle">Редактировать профиль</label>
+      <input type="text" title="Имя" class="popup__formInputText popup__formInputText_firstInput">
+      <input type="text" title="Описание" class="popup__formInputText popup__formInputText_secondInput">
+      <input type="submit" title="Отправить" value="Отправить" class="popup__formSubmitButton">
+    </form>
+    <form class="popup__form popup__form_addElement">
+      <label class="popup__formTitle">Новое место</label>
+      <input type="text" title="Название" placeholder="Название" class="popup__formInputText popup__formInputText_firstInput">
+      <input type="text" title="Ссылка на картинку" placeholder="Ссылка на картинку" class="popup__formInputText popup__formInputText_secondInput">
+      <input type="submit" title="Создать" value="Создать" class="popup__formSubmitButton">
+    </form>
     <figure class="popup__lightBox">
       <img class="popup__lightBoxImage" src="" alt="">
       <figcaption class="popup__lightBoxFigcaption"></figcaption>
     </figure>
-    <form class="popup__form">
-      <label class="popup__formTitle"></label>
-      <input type="text" title="Имя" class="popup__formInputText popup__formInputText_typeFirstInput">
-      <input type="text" title="Описание" class="popup__formInputText popup__formInputText_typeSecondInput">
-      <input type="submit" title="Сохранить" class="popup__formSubmitButton popup__FormSubmitButton_enabled">
-    </form>
-  </template>
+  </div>
 
   <template id="element">
     <li class="element">

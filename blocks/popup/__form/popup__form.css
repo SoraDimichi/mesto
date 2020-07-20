@@ -1,6 +1,6 @@
 .popup__form {
   grid-area: 2 / 2 / 3 / 3;
-  display: grid;
+  display: none;
   background-color: white;
   border-radius: 10px;
   grid-template-rows: 34px auto 49px auto 31px auto 49px auto 37px;

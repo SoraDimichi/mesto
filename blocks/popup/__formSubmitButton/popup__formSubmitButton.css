@@ -1,6 +1,3 @@
-@import url('./_disabled/popup__formSubmitButton_disabled.css');
-@import url('./_enabled/popup__formSubmitButton_enabled.css');
-
 .popup__formSubmitButton {
   grid-area: 8 / 2 / 9 / 3;
   padding: 14px 0 13px 0;
