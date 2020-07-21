@@ -25,31 +25,32 @@ const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
     },
 ];
-
-const editButton = document.querySelector('.profile__openPopupButton') // Находим кнопку редактирования профиля
-const addButton = document.querySelector('.profile__addButton') // Находим кнопку добавления карточки
-const elements = document.querySelector('.elements') // Находим родитель куда будут вставляться карточки
-
 // Цепанем на константы аутпуты в профиле
 const nameOutput = document.querySelector('.profile__name')
 const descriptionOutput = document.querySelector('.profile__description')
-
+// Находим родитель куда будут вставляться карточки
+const elements = document.querySelector('.elements')
 // Находим темплейт карточки
 const elementTemplate = document.querySelector('#element').content
 const element = elementTemplate.querySelector('.element')
 
-// Найдем попап
+// Найдем попап, куда будут вставляться контейнеры, в зависимости от нажатой кнопки
 const popup = document.querySelector('.popup')
 // Крестик закрытия попапа
 const popupCloseButton = popup.querySelector('.popup__closeButton')
 
+// Находим кнопку редактирования профиля
+const editButton = document.querySelector('.profile__openPopupButton')
 // Находим форму редактирования профиля внутри попапа
 const formEditProfile = popup.querySelector('.popup__form_editProfile')
 // Цепляем на каждый элемент формы константу
 const formEditProfileFirstInput = formEditProfile.querySelector('.popup__formInputText_firstInput')
 const formEditProfileSecondInput = formEditProfile.querySelector('.popup__formInputText_secondInput')
 
-const formAddElement = popup.querySelector('.popup__form_addElement') // Находим форму добавления карточки внутри попапа
+// Находим кнопку добавления карточки
+const addButton = document.querySelector('.profile__addButton')
+// Находим форму добавления карточки внутри попапа
+const formAddElement = popup.querySelector('.popup__form_addElement')
 // Цепляем на каждый элемент формы константу
 const formAddElementFirstInput = formAddElement.querySelector('.popup__formInputText_firstInput')
 const formAddElementSecondInput = formAddElement.querySelector('.popup__formInputText_secondInput')
@@ -59,7 +60,6 @@ const lightBox = popup.querySelector('.popup__lightBox')
 // Объявляем все элементы лайтбокса
 const lightBoxImage = lightBox.querySelector('.popup__lightBoxImage')
 const lightBoxFigcaption = lightBox.querySelector('.popup__lightBoxFigcaption')
-
 
 // Функция открытия попапа
 const popupToggle = () => {
@@ -82,12 +82,13 @@ popupCloseButton.addEventListener('click', () => {
     popupToggle()
     popupClosePopupContainers()
 })
-// Мне не нравится не то как я сейчас сделал, ни создавать родителей с классом .popup__container, внутри которых будет и
-// содержимое, получается нужно будет много тогглов прописывать. Допускаю вероятность, что я протупил и не обнаружил
+
+// Мне не нравится не то как я сейчас сделал, не создавать родителей с классом .popup__container, внутри которых будет
+// содержимое - получается нужно будет много тогглов прописывать. Допускаю вероятность, что я протупил и не обнаружил
 // логику тогглов, но тогда бы всеравно пришлось плодить функции тогглов.
 // Зато одна костыльная функция - дешево и сердито, как ковровая бомбардировка.
 // Скажите как правильно, я исправлю.
-// Спасибо за ваши ревью и ответы!
+// Спасибо за ваши ревью и ответы! Снизу еще один коммент, на который вы не ответили в прошлый раз.
 
 // Закрытие при клике по любому месту кроме popup__form
 popup.addEventListener('click', (evt) => {
