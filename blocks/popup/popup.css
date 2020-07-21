@@ -1,5 +1,4 @@
 @import url('./__form/popup__form.css');
-@import url('./__form/_opened/popup__form_opened.css');
 @import url('./__formTitle/popup__formTitle.css');
 @import url('./__formInputText/popup__formInputText.css');
 @import url('./__formInputText/_secondInput/popup__formInputText_secondInput.css');
@@ -7,8 +6,7 @@
 @import url('./__formSubmitButton/popup__formSubmitButton.css');
 @import url('./__closeButton/popup__closeButton.css');
 @import url('./__closeButtonImage/popup__closeButtonImage.css');
-@import url('./__lightBox/popup__lightBox.css');
-@import url('./__lightBox/_opened/popup__lightBox_opened.css');
+@import url('__lightBoxContainer/popup__lightBoxContainer.css');
 @import url('./__lightBoxImage/popup__lightBoxImage.css');
 @import url('./__lightBoxFigcaption/popup__lightBoxFigcaption.css');
 

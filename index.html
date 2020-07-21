@@ -39,23 +39,33 @@
     </p>
   </footer>
 
-  <div class="popup">
+  <div class="popup popup_editProfile">
     <button class="popup__closeButton">
       <img class="popup__closeButtonImage" src="./images/__closeButtonImage/popup__closeButtonImage.svg" alt="закрыть">
     </button>
-    <form class="popup__form popup__form_editProfile">
+    <form class="popup__form">
       <label class="popup__formTitle">Редактировать профиль</label>
       <input type="text" title="Имя" class="popup__formInputText popup__formInputText_firstInput">
       <input type="text" title="Описание" class="popup__formInputText popup__formInputText_secondInput">
       <input type="submit" title="Отправить" value="Отправить" class="popup__formSubmitButton">
     </form>
-    <form class="popup__form popup__form_addElement">
+  </div>
+  <div class="popup popup_addElement">
+    <button class="popup__closeButton">
+      <img class="popup__closeButtonImage" src="./images/__closeButtonImage/popup__closeButtonImage.svg" alt="закрыть">
+    </button>
+    <form class="popup__form">
       <label class="popup__formTitle">Новое место</label>
       <input type="text" title="Название" placeholder="Название" class="popup__formInputText popup__formInputText_firstInput">
       <input type="text" title="Ссылка на картинку" placeholder="Ссылка на картинку" class="popup__formInputText popup__formInputText_secondInput">
       <input type="submit" title="Создать" value="Создать" class="popup__formSubmitButton">
     </form>
-    <figure class="popup__lightBox">
+  </div>
+  <div class="popup popup_lightBox">
+    <button class="popup__closeButton">
+      <img class="popup__closeButtonImage" src="./images/__closeButtonImage/popup__closeButtonImage.svg" alt="закрыть">
+    </button>
+    <figure class="popup__lightBoxContainer">
       <img class="popup__lightBoxImage" src="" alt="">
       <figcaption class="popup__lightBoxFigcaption"></figcaption>
     </figure>
@@ -74,6 +84,6 @@
     </li>
   </template>
 
-
   <script src="./script.js"></script>
+
 </body>

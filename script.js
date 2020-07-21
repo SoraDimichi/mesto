@@ -25,105 +25,98 @@ const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
     },
 ];
-// Цепанем на константы аутпуты в профиле
-const nameOutput = document.querySelector('.profile__name')
-const descriptionOutput = document.querySelector('.profile__description')
+
+
 // Находим родитель куда будут вставляться карточки
 const elements = document.querySelector('.elements')
 // Находим темплейт карточки
 const elementTemplate = document.querySelector('#element').content
 const element = elementTemplate.querySelector('.element')
 
-// Найдем попап, куда будут вставляться контейнеры, в зависимости от нажатой кнопки
-const popup = document.querySelector('.popup')
-// Крестик закрытия попапа
-const popupCloseButton = popup.querySelector('.popup__closeButton')
+// Цепанем на константы аутпуты в профиле
+const nameOutput = document.querySelector('.profile__name')
+const descriptionOutput = document.querySelector('.profile__description')
 
 // Находим кнопку редактирования профиля
 const editButton = document.querySelector('.profile__openPopupButton')
+
+// Находим попап редактирования профиля
+const editProfilePopup = document.querySelector('.popup_editProfile')
+// Крестик закрытия попапа
+const editProfilePopupCloseButton = editProfilePopup.querySelector('.popup__closeButton')
 // Находим форму редактирования профиля внутри попапа
-const formEditProfile = popup.querySelector('.popup__form_editProfile')
-// Цепляем на каждый элемент формы константу
-const formEditProfileFirstInput = formEditProfile.querySelector('.popup__formInputText_firstInput')
-const formEditProfileSecondInput = formEditProfile.querySelector('.popup__formInputText_secondInput')
+const editProfileForm = editProfilePopup.querySelector('.popup__form')
+// Найдем поля ввода
+const editProfileFormFirstInput = editProfileForm.querySelector('.popup__formInputText_firstInput')
+const editProfileFormSecondInput = editProfileForm.querySelector('.popup__formInputText_secondInput')
 
 // Находим кнопку добавления карточки
 const addButton = document.querySelector('.profile__addButton')
-// Находим форму добавления карточки внутри попапа
-const formAddElement = popup.querySelector('.popup__form_addElement')
-// Цепляем на каждый элемент формы константу
-const formAddElementFirstInput = formAddElement.querySelector('.popup__formInputText_firstInput')
-const formAddElementSecondInput = formAddElement.querySelector('.popup__formInputText_secondInput')
+
+// Находим попап добавления карточки
+const addElementPopup = document.querySelector('.popup_addElement')
+// Крестик закрытия попапа
+const addElementPopupCloseButton = addElementPopup.querySelector('.popup__closeButton')
+// Находим форму редактирования профиля внутри попапа
+const addElementForm = addElementPopup.querySelector('.popup__form')
+// Найдем поля ввода
+const addElementFormFirstInput = addElementForm.querySelector('.popup__formInputText_firstInput')
+const addElementFormSecondInput = addElementForm.querySelector('.popup__formInputText_secondInput')
 
 // Находим лайтбокс внутри попапа
-const lightBox = popup.querySelector('.popup__lightBox')
-// Объявляем все элементы лайтбокса
-const lightBoxImage = lightBox.querySelector('.popup__lightBoxImage')
-const lightBoxFigcaption = lightBox.querySelector('.popup__lightBoxFigcaption')
+const lightBoxPopup = document.querySelector('.popup_lightBox')
+// Крестик закрытия попапа
+const lightBoxPopupCloseButton = lightBoxPopup.querySelector('.popup__closeButton')
+// Объявляем все используемые элементы лайтбокса
+const lightBoxImage = lightBoxPopup.querySelector('.popup__lightBoxImage')
+const lightBoxFigcaption = lightBoxPopup.querySelector('.popup__lightBoxFigcaption')
 
-// Функция открытия попапа
-const popupToggle = () => {
-    popup.classList.toggle('popup_opened')
+// Функция тоггла попапа редактирования профиля
+const editProfilePopupToggle = () => {
+    editProfilePopup.classList.toggle('popup_opened')
+}
+// Функция тоггла попапа добавления карточки
+const addElementPopupToggle = () => {
+    addElementPopup.classList.toggle('popup_opened')
+}
+// Функция тоггла попапа лайтбокса
+const lightBoxPopupToggle = () => {
+    lightBoxPopup.classList.toggle('popup_opened')
 }
 
-// Функция закрытия контейнеров попапа
-const popupClosePopupContainers = () => {
-    // Закроем все контейнеры разом, что бы не возникали конфликты
-    formAddElement.classList.remove('popup__form_opened')
-    formEditProfile.classList.remove('popup__form_opened')
-    lightBox.classList.remove('popup__lightBox_opened')
-
-    // Обнулим значение формы добавления карточки, если что то вводили до этого
-    formAddElementFirstInput.value = ''
-    formAddElementSecondInput.value = ''
-}
-// Закрытие по крестику
-popupCloseButton.addEventListener('click', () => {
-    popupToggle()
-    popupClosePopupContainers()
+// Закрытие по крестику попапа добавления карточки
+addElementPopupCloseButton.addEventListener('click', () => {
+    addElementPopupToggle()
+})
+// Закрытие по крестику попапа редактирования профиля
+editProfilePopupCloseButton.addEventListener('click', () => {
+    editProfilePopupToggle()
+})
+// Закрытие по крестику попапа лайтбокса
+lightBoxPopupCloseButton.addEventListener('click', () => {
+    lightBoxPopupToggle()
 })
 
-// Мне не нравится не то как я сейчас сделал, не создавать родителей с классом .popup__container, внутри которых будет
-// содержимое - получается нужно будет много тогглов прописывать. Допускаю вероятность, что я протупил и не обнаружил
-// логику тогглов, но тогда бы всеравно пришлось плодить функции тогглов.
-// Зато одна костыльная функция - дешево и сердито, как ковровая бомбардировка.
-// Скажите как правильно, я исправлю.
-// Спасибо за ваши ревью и ответы! Снизу еще один коммент, на который вы не ответили в прошлый раз.
-
-// Закрытие при клике по любому месту кроме popup__form
-popup.addEventListener('click', (evt) => {
+// Закрытие при клике по любому месту кроме формы добавления элемента
+addElementPopup.addEventListener('click', (evt) => {
     if (evt.target !== evt.currentTarget) {
         return
     }
-    popupToggle()
-    popupClosePopupContainers()
+    addElementPopupToggle()
 })
-
-// Открытие формы исправления профиля по кнопке
-editButton.addEventListener('click', () => {
-
-    // Вставляем значения
-    formEditProfileFirstInput.value = nameOutput.textContent
-    formEditProfileFirstInput.placeholder = nameOutput.textContent
-    formEditProfileSecondInput.value = descriptionOutput.textContent
-    formEditProfileSecondInput.placeholder = nameOutput.textContent
-
-    // Открываем попап
-    popupToggle()
-
-    // Открываем форму
-    formEditProfile.classList.add('popup__form_opened')
+// Закрытие при клике по любому месту кроме формы исправления формы
+editProfilePopup.addEventListener('click', (evt) => {
+    if (evt.target !== evt.currentTarget) {
+        return
+    }
+    editProfilePopupToggle()
 })
-
-
-// Открытие формы добавления карточки по кнопке
-addButton.addEventListener('click', () => {
-
-    // Открываем попап
-    popupToggle()
-
-    // Открываем форму
-    formAddElement.classList.add('popup__form_opened')
+// Закрытие при клике по любому месту кроме лайтбокса
+lightBoxPopup.addEventListener('click', (evt) => {
+    if (evt.target !== evt.currentTarget) {
+        return
+    }
+    lightBoxPopupToggle()
 })
 
 // Функция создающая карточку
@@ -151,13 +144,6 @@ const generateElement = (name, link) => {
     elementLikeButton.addEventListener('click', () => {
         const LikeButtonImage = elementLikeButton.querySelector('.element__likeButtonImage')
         LikeButtonImage.classList.toggle('element__likeButtonImage_toggled')
-        //подскажите пожалуйста, как сделать через toggle замену картинки по src, я не разобрался.
-        //потому что через задний фон - портится логика, имхо - это не правильно, должна меняться картинка, а не фон.
-        // Как сделать правильно?
-        // !
-        // !
-        // !
-        //Вы не увидели этот коммент в прошлый раз
     })
 
     // Функция удаления карточки
@@ -175,11 +161,8 @@ const generateElement = (name, link) => {
                 lightBoxImage.alt = elementImage.alt
                 lightBoxImage.src = elementImage.src
 
-                // Открываем попап
-                popupToggle()
-
-                // Открываем лайтбокс
-                lightBox.classList.add('popup__lightBox_opened')
+                // Открываем попап лайтбокса
+                lightBoxPopupToggle()
             }
         })
     })
@@ -188,46 +171,59 @@ const generateElement = (name, link) => {
     return elementClone
 }
 
+// Открытие формы исправления профиля по кнопке
+editButton.addEventListener('click', () => {
+
+    // Вставляем значения
+    editProfileFormFirstInput.value = nameOutput.textContent
+    editProfileFormFirstInput.placeholder = nameOutput.textContent
+    editProfileFormSecondInput.value = descriptionOutput.textContent
+    editProfileFormSecondInput.placeholder = nameOutput.textContent
+
+    // Открываем попап
+    editProfilePopupToggle()
+})
+
+// Открытие формы добавления карточки по кнопке
+addButton.addEventListener('click', () => {
+    // Открываем попап
+    addElementPopupToggle()
+})
+
 // Редактирование профиля по сабмиту
-formEditProfile.addEventListener('submit',  (evt) => {
+editProfileForm.addEventListener('submit',  (evt) => {
     evt.preventDefault()
 
     // Переносим значения из профиля
-    nameOutput.textContent = formEditProfileFirstInput.value
-    descriptionOutput.textContent = formEditProfileSecondInput.value
+    nameOutput.textContent = editProfileFormFirstInput.value
+    descriptionOutput.textContent = editProfileFormSecondInput.value
 
     // Закрываем попап
-    popupToggle()
-
-    // Закрываем форму
-    formEditProfile.classList.remove('popup__form_opened')
+    editProfilePopupToggle()
 })
 
 // Создание карточки по сабмиту
-formAddElement.addEventListener('submit',(evt) => {
+addElementForm.addEventListener('submit',(evt) => {
     evt.preventDefault()
 
     // Объявляем имя и ссылку в константы
-    const name = formAddElementFirstInput.value
-    const link = formAddElementSecondInput.value
+    const name = addElementFormFirstInput.value
+    const link = addElementFormSecondInput.value
 
     // Вставляем полностью собранную карточку
     elements.prepend(generateElement(name, link))
 
     // Обнулим значения формы для следующего вызова
-    formAddElementFirstInput.value = ''
-    formAddElementSecondInput.value = ''
+    addElementFormFirstInput.value = ''
+    addElementFormSecondInput.value = ''
 
     // Закрываем попап
-    popupToggle()
-
-    // Закрываем форму
-    formAddElement.classList.remove('popup__form_opened')
+    addElementPopupToggle()
 })
+
 
 // Заполнение карточек из массива
 initialCards.forEach ((el) => {
-
     //вставляем полностью собранную карточку
     elements.prepend(generateElement(el.name, el.link))
 })
