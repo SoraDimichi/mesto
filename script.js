@@ -40,8 +40,7 @@ const descriptionOutput = document.querySelector('.profile__description')
 const editButton = document.querySelector('.profile__openPopupButton')
 // Находим попап редактирования профиля
 const editProfilePopup = document.querySelector('.popup_editProfile')
-// Крестик закрытия попапа
-const editProfilePopupCloseButton = editProfilePopup.querySelector('.popup__closeButton')
+
 // Находим форму редактирования профиля внутри попапа
 const editProfileForm = editProfilePopup.querySelector('.popup__form')
 // Найдем поля ввода
@@ -52,8 +51,8 @@ const editProfileFormSecondInput = editProfileForm.querySelector('.popup__formIn
 const addButton = document.querySelector('.profile__addButton')
 // Находим попап добавления карточки
 const addElementPopup = document.querySelector('.popup_addElement')
-// Крестик закрытия попапа
-const addElementPopupCloseButton = addElementPopup.querySelector('.popup__closeButton')
+
+
 // Находим форму редактирования профиля внутри попапа
 const addElementForm = addElementPopup.querySelector('.popup__form')
 // Найдем поля ввода
@@ -62,64 +61,44 @@ const addElementFormSecondInput = addElementForm.querySelector('.popup__formInpu
 
 // Находим лайтбокс внутри попапа
 const lightBoxPopup = document.querySelector('.popup_lightBox')
-// Крестик закрытия попапа
-const lightBoxPopupCloseButton = lightBoxPopup.querySelector('.popup__closeButton')
+
 // Объявляем все используемые элементы лайтбокса
 const lightBoxImage = lightBoxPopup.querySelector('.popup__lightBoxImage')
 const lightBoxFigcaption = lightBoxPopup.querySelector('.popup__lightBoxFigcaption')
 
-
-
+// Находим все попапы и запишем их в массив
+const popupsList = Array.from(document.querySelectorAll('.popup'))
 
 // Функция тоггла попапа
 const popupToggle = (el) => {
     el.classList.toggle('popup_opened')
 }
 
-// Закрытие по крестику попапа добавления карточки
-addElementPopupCloseButton.addEventListener('click', () => {
-    popupToggle(addElementPopup)
-})
-// Закрытие по крестику попапа редактирования профиля
-editProfilePopupCloseButton.addEventListener('click', () => {
-    popupToggle(editProfilePopup)
-})
-// Закрытие по крестику попапа лайтбокса
-lightBoxPopupCloseButton.addEventListener('click', () => {
-    popupToggle(lightBoxPopup)
-})
+//Функция проверки открыт ли попап и добавления слушателя события кнопки esc
+const keyHandler = (evt) => {
+    popupsList.forEach((popup) => {
+        if (popup.matches('.popup_opened')) {
+            const popupActive = document.querySelector('.popup_opened')
+            if (evt.key === 'Escape') {
+                popupActive.classList.remove('popup_opened')
+            }
+        }
+    })
+}
 
-const popupsList = Array.from(document.querySelectorAll('.popup__closeButton'))
+document.addEventListener('keydown', keyHandler)
+
+// Функция закрытия попапа по крестику или полю за формой
 popupsList.forEach((popup) => {
+    // Найдем крестик в попапе
+    const popupCloseButton = popup.querySelector('.popup__closeButton')
+    // Добавим слушатель на попап
     popup.addEventListener('click', (evt) => {
-        if (evt.target !== evt.currentTarget) {
+        if ((evt.target !== evt.currentTarget) && (evt.target !== popupCloseButton)) {
             return
         }
         popupToggle(popup)
     })
-})
-
-
-// Закрытие при клике по любому месту кроме формы добавления элемента
-addElementPopup.addEventListener('click', (evt) => {
-    if (evt.target !== evt.currentTarget) {
-        return
-    }
-    popupToggle(addElementPopup)
-})
-// Закрытие при клике по любому месту кроме формы исправления формы
-editProfilePopup.addEventListener('click', (evt) => {
-    if (evt.target !== evt.currentTarget) {
-        return
-    }
-    popupToggle(editProfilePopup)
-})
-// Закрытие при клике по любому месту кроме лайтбокса
-lightBoxPopup.addEventListener('click', (evt) => {
-    if (evt.target !== evt.currentTarget) {
-        return
-    }
-    popupToggle(lightBoxPopup)
 })
 
 // Функция создающая карточку
@@ -166,6 +145,7 @@ const generateElement = (name, link) => {
 
                 // Открываем попап лайтбокса
                 popupToggle(lightBoxPopup)
+
             }
         })
     })
@@ -190,12 +170,14 @@ editButton.addEventListener('click', () => {
 
     // Открываем попап
     popupToggle(editProfilePopup)
+
 })
 
 // Открытие формы добавления карточки по кнопке
 addButton.addEventListener('click', () => {
     // Открываем попап
     popupToggle(addElementPopup)
+
 })
 
 
