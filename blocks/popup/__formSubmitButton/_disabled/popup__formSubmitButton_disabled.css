@@ -1,0 +1,6 @@
+.popup__formSubmitButton_disabled {
+  color: #000;
+  background-color: inherit;
+  opacity: 0.2;
+  cursor: inherit;
+}

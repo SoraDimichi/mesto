@@ -1,14 +1,14 @@
 .popup__form {
   grid-area: 2 / 2 / 3 / 3;
   display: grid;
+  grid-template-columns: minmax(19px, 36px) minmax(max-content, 358px) minmax(19px, 36px);
   background-color: white;
   border-radius: 10px;
-  grid-template-rows: 34px auto 49px auto 31px auto 49px auto 37px;
-  grid-template-columns: minmax(19px, 36px) minmax(max-content, 358px) minmax(19px, 36px);
+  padding: 34px 0 34px 0;
 }
 
 @media screen and (max-width: 420px) {
   .popup__form {
-    grid-template-rows: 30px auto 40px auto 31px auto 40px auto 33px;
+    padding: 30px 0 33px 0;
   }
 }

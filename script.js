@@ -68,9 +68,12 @@ const lightBoxPopupCloseButton = lightBoxPopup.querySelector('.popup__closeButto
 const lightBoxImage = lightBoxPopup.querySelector('.popup__lightBoxImage')
 const lightBoxFigcaption = lightBoxPopup.querySelector('.popup__lightBoxFigcaption')
 
-// Функция тоггла попапа редактирования профиля
-const popupToggle = (kek) => {
-    kek.classList.toggle('popup_opened')
+
+
+
+// Функция тоггла попапа
+const popupToggle = (el) => {
+    el.classList.toggle('popup_opened')
 }
 
 // Закрытие по крестику попапа добавления карточки
@@ -85,6 +88,17 @@ editProfilePopupCloseButton.addEventListener('click', () => {
 lightBoxPopupCloseButton.addEventListener('click', () => {
     popupToggle(lightBoxPopup)
 })
+
+const popupsList = Array.from(document.querySelectorAll('.popup__closeButton'))
+popupsList.forEach((popup) => {
+    popup.addEventListener('click', (evt) => {
+        if (evt.target !== evt.currentTarget) {
+            return
+        }
+        popupToggle(popup)
+    })
+})
+
 
 // Закрытие при клике по любому месту кроме формы добавления элемента
 addElementPopup.addEventListener('click', (evt) => {
@@ -184,6 +198,7 @@ addButton.addEventListener('click', () => {
     popupToggle(addElementPopup)
 })
 
+
 // Редактирование профиля по сабмиту
 editProfileForm.addEventListener('submit',  (evt) => {
     evt.preventDefault()
@@ -195,7 +210,6 @@ editProfileForm.addEventListener('submit',  (evt) => {
     // Закрываем попап
     popupToggle(editProfilePopup)
 })
-
 
 // Создание карточки по сабмиту
 addElementForm.addEventListener('submit',(evt) => {

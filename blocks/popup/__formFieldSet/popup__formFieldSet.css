@@ -1,0 +1,7 @@
+.popup__formFieldSet {
+  align-items: stretch;
+  grid-area: 1 / 2 / 2 / 3;
+  display: flex;
+  border: none;
+  padding: 0;
+}

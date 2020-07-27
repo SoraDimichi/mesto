@@ -1,0 +1,9 @@
+.popup__formField {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.popup__formField:not(:last-of-type) {
+  margin: 0 0 40px 0;
+}
