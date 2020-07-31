@@ -70,14 +70,12 @@ const lightBoxFigcaption = lightBoxPopup.querySelector('.popup__lightBoxFigcapti
 const popupsList = Array.from(document.querySelectorAll('.popup'))
 
 // Функция тоггла попапа
-const popupToggle = (el) => {
-    el.classList.toggle('popup_opened')
-}
+const popupToggle = (el) => el.classList.toggle('popup_opened')
 
 //Функция проверки открыт ли попап и добавления слушателя события кнопки esc
 const keyHandler = (evt) => {
     popupsList.forEach((popup) => {
-        if (popup.matches('.popup_opened')) {
+        if (popup.className.includes('popup_opened')) {
             const popupActive = document.querySelector('.popup_opened')
             if (evt.key === 'Escape') {
                 popupActive.classList.remove('popup_opened')
@@ -145,7 +143,6 @@ const generateElement = (name, link) => {
 
                 // Открываем попап лайтбокса
                 popupToggle(lightBoxPopup)
-
             }
         })
     })
