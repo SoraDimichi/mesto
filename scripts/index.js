@@ -49,7 +49,7 @@ const popupKeyToggle = (popup) => {
     const keyHandler = (evt) => {
             if (evt.key === 'Escape') {
                 console.log('HELLO')
-                popupToggle(popup)
+                popup.classList.remove('popup_opened')
                 document.removeEventListener('keydown', keyHandler)
             }
         }
@@ -113,18 +113,18 @@ const generateElement = (name, link) => {
     elementImage.src = link
 
     // Функция удаления карточки на мусорном вердре
-    elementRemoveButton.addEventListener('click', () => {
+    elementRemoveButton.addEventListener('click', _ => {
         elementClone.remove(elementClone)
     })
 
     // Функция таггла лайка на лайкокнопке
-    elementLikeButton.addEventListener('click', () => {
+    elementLikeButton.addEventListener('click', _ => {
         const LikeButtonImage = elementLikeButton.querySelector('.element__likeButtonImage')
         LikeButtonImage.classList.toggle('element__likeButtonImage_toggled')
     })
 
     // Функция удаления карточки
-    elementRemoveButton.addEventListener('click', () => {
+    elementRemoveButton.addEventListener('click', _ => {
         elementClone.remove(elementClone)
     })
 
@@ -155,7 +155,7 @@ const addElementToStart = (card) => {
 }
 
 // Открытие формы исправления профиля по кнопке
-editButton.addEventListener('click', () => {
+editButton.addEventListener('click', _ => {
     // вешаем тогглер на кнопку esc
     popupKeyToggle(editProfilePopup)
 
@@ -175,7 +175,7 @@ editButton.addEventListener('click', () => {
 })
 
 // Открытие формы добавления карточки по кнопке
-addButton.addEventListener('click', () => {
+addButton.addEventListener('click', _ => {
     // вешаем тогглер на кнопку esc
     popupKeyToggle(addElementPopup)
 
