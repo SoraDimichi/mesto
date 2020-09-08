@@ -50,7 +50,7 @@ const popupKeyToggle = (popup) => {
             if (evt.key === 'Escape') {
                 popup.classList.remove('popup_opened')
                 document.removeEventListener('keydown', keyHandler)
-                if (!popup.classList.contains('popup_lightBox')) {
+                if (!(popup === lightBoxPopup)) {
                     popupCleaner(popup)
                 }
             }
@@ -83,10 +83,6 @@ const popupCleaner = (popup) => {
 }
 
 
-
-
-
-
 // Функция закрытия попапа по крестику или полю за формой
 popupsList.forEach((popup) => {
     // Найдем крестик в попапе
@@ -97,7 +93,7 @@ popupsList.forEach((popup) => {
             return
         }
         popupToggle(popup)
-        if (!popup.classList.contains('popup_lightBox')) {
+        if (!(popup === lightBoxPopup)) {
             popupCleaner(popup)
         }
     })
