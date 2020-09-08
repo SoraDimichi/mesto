@@ -1,31 +1,3 @@
-// Массив карточек по умолчанию
-const initialCards = [
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-];
-
 // Находим родитель куда будут вставляться карточки
 const elements = document.querySelector('.elements')
 // Находим темплейт карточки
@@ -73,18 +45,42 @@ const popupsList = Array.from(document.querySelectorAll('.popup'))
 const popupToggle = (el) => el.classList.toggle('popup_opened')
 
 //Функция проверки открыт ли попап и добавления слушателя события кнопки esc
-const keyHandler = (evt) => {
-    popupsList.forEach((popup) => {
-        if (popup.className.includes('popup_opened')) {
-            const popupActive = document.querySelector('.popup_opened')
+const popupKeyToggle = (popup) => {
+    const keyHandler = (evt) => {
             if (evt.key === 'Escape') {
-                popupActive.classList.remove('popup_opened')
+                console.log('HELLO')
+                popupToggle(popup)
+                document.removeEventListener('keydown', keyHandler)
             }
         }
+    document.addEventListener('keydown', keyHandler)
+}
+
+// Функция очистки полей, ошибок и блокировщик кнопки
+const popupCleaner = (popup) => {
+    const formInputs = popup.querySelectorAll('.popup__formInputText')
+    const formInputErrors = popup.querySelectorAll('.popup__formInputError')
+    const formButton = popup.querySelector('.popup__formSubmitButton')
+
+    formButton.classList.add('popup__formSubmitButton_disabled')
+    formButton.disabled = true
+
+
+    formInputs.forEach ((input) =>  {
+        input.classList.remove('popup__formInputText_error')
+        input.value = ''
+    })
+
+    formInputErrors.forEach ((formInputError) => {
+        formInputError.classList = ''
+        formInputError.textContent = ''
     })
 }
 
-document.addEventListener('keydown', keyHandler)
+
+
+
+
 
 // Функция закрытия попапа по крестику или полю за формой
 popupsList.forEach((popup) => {
@@ -96,6 +92,7 @@ popupsList.forEach((popup) => {
             return
         }
         popupToggle(popup)
+        popupCleaner(popup)
     })
 })
 
@@ -140,7 +137,8 @@ const generateElement = (name, link) => {
                 lightBoxFigcaption.textContent = elementTitle.textContent
                 lightBoxImage.alt = elementImage.alt
                 lightBoxImage.src = elementImage.src
-
+                // вешаем тогглер на кнопку esc
+                popupKeyToggle(lightBoxPopup)
                 // Открываем попап лайтбокса
                 popupToggle(lightBoxPopup)
             }
@@ -158,23 +156,31 @@ const addElementToStart = (card) => {
 
 // Открытие формы исправления профиля по кнопке
 editButton.addEventListener('click', () => {
+    // вешаем тогглер на кнопку esc
+    popupKeyToggle(editProfilePopup)
 
     // Вставляем значения
     editProfileFormFirstInput.value = nameOutput.textContent
-    editProfileFormFirstInput.placeholder = nameOutput.textContent
+    editProfileFormFirstInput.placeholder = 'Имя'
     editProfileFormSecondInput.value = descriptionOutput.textContent
-    editProfileFormSecondInput.placeholder = nameOutput.textContent
+    editProfileFormSecondInput.placeholder = 'О себе'
+
+    // Очищаем вэлью по клику
+    editProfileFormFirstInput.addEventListener('click', _ => editProfileFormFirstInput.value = '')
+    editProfileFormSecondInput.addEventListener('click', _ => editProfileFormSecondInput.value = '')
+
 
     // Открываем попап
     popupToggle(editProfilePopup)
-
 })
 
 // Открытие формы добавления карточки по кнопке
 addButton.addEventListener('click', () => {
+    // вешаем тогглер на кнопку esc
+    popupKeyToggle(addElementPopup)
+
     // Открываем попап
     popupToggle(addElementPopup)
-
 })
 
 
@@ -182,11 +188,14 @@ addButton.addEventListener('click', () => {
 editProfileForm.addEventListener('submit',  (evt) => {
     evt.preventDefault()
 
+
     // Переносим значения из профиля
     nameOutput.textContent = editProfileFormFirstInput.value
     descriptionOutput.textContent = editProfileFormSecondInput.value
 
+
     // Закрываем попап
+    popupCleaner(editProfilePopup)
     popupToggle(editProfilePopup)
 })
 
@@ -201,11 +210,10 @@ addElementForm.addEventListener('submit',(evt) => {
     // Вставляем полностью собранную карточку
     addElementToStart(generateElement(name, link))
 
-    // Обнулим значения формы для следующего вызова
-    addElementFormFirstInput.value = ''
-    addElementFormSecondInput.value = ''
+
 
     // Закрываем попап
+    popupCleaner(addElementPopup)
     popupToggle(addElementPopup)
 })
 

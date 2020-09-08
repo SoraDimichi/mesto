@@ -13,7 +13,7 @@
 @import url('./__lightBoxImage/popup__lightBoxImage.css');
 @import url('./__lightBoxFigcaption/popup__lightBoxFigcaption.css');
 @import url('./__formSubmitButton/_disabled/popup__formSubmitButton_disabled.css');
-@import url('__formError/popup__formError.css');
+@import url('__formInputError/popup__formInputError.css');
 
 .popup {
   visibility: hidden;
