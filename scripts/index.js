@@ -48,23 +48,28 @@ const popupToggle = (el) => el.classList.toggle('popup_opened')
 const popupKeyToggle = (popup) => {
     const keyHandler = (evt) => {
             if (evt.key === 'Escape') {
-                console.log('HELLO')
                 popup.classList.remove('popup_opened')
                 document.removeEventListener('keydown', keyHandler)
+                if (!popup.classList.contains('popup_lightBox')) {
+                    popupCleaner(popup)
+                }
             }
         }
     document.addEventListener('keydown', keyHandler)
 }
 
 // Функция очистки полей, ошибок и блокировщик кнопки
+
 const popupCleaner = (popup) => {
+
     const formInputs = popup.querySelectorAll('.popup__formInputText')
     const formInputErrors = popup.querySelectorAll('.popup__formInputError')
     const formButton = popup.querySelector('.popup__formSubmitButton')
 
-    formButton.classList.add('popup__formSubmitButton_disabled')
-    formButton.disabled = true
-
+    if (!formButton.classList.contains('popup__formSubmitButton_disabled')) {
+        formButton.classList.add('popup__formSubmitButton_disabled')
+        formButton.disabled = true
+    }
 
     formInputs.forEach ((input) =>  {
         input.classList.remove('popup__formInputText_error')
@@ -92,7 +97,9 @@ popupsList.forEach((popup) => {
             return
         }
         popupToggle(popup)
-        popupCleaner(popup)
+        if (!popup.classList.contains('popup_lightBox')) {
+            popupCleaner(popup)
+        }
     })
 })
 
