@@ -41,26 +41,24 @@ const lightBoxFigcaption = lightBoxPopup.querySelector('.popup__lightBoxFigcapti
 // Находим все попапы и запишем их в массив
 const popupsList = Array.from(document.querySelectorAll('.popup'))
 
-// Функция тоггла попапа
-const popupToggle = (popup) => popup.classList.toggle('popup_opened')
-
 //Функция проверки открыт ли попап и добавления слушателя события кнопки esc
 
 const keyHandler = (evt) => {
     const openedPopup = document.querySelector('.popup_opened')
     if (evt.key === 'Escape') {
+        console.log('Hello')
         popupClose (openedPopup)
     }
 }
 
 const popupOpen = (popup) => {
     document.addEventListener('keydown', keyHandler)
-    popupToggle(popup)
+    popup.classList.add('popup_opened')
 }
 
 const popupClose = (popup) => {
     document.removeEventListener('keydown', keyHandler)
-    popupToggle(popup)
+    popup.classList.remove('popup_opened')
 }
 
 
@@ -122,18 +120,18 @@ const generateElement = (name, link) => {
     elementImage.src = link
 
     // Функция удаления карточки на мусорном вердре
-    elementRemoveButton.addEventListener('click', _ => {
+    elementRemoveButton.addEventListener('click', () => {
         elementClone.remove(elementClone)
     })
 
     // Функция таггла лайка на лайкокнопке
-    elementLikeButton.addEventListener('click', _ => {
+    elementLikeButton.addEventListener('click', () => {
         const LikeButtonImage = elementLikeButton.querySelector('.element__likeButtonImage')
         LikeButtonImage.classList.toggle('element__likeButtonImage_toggled')
     })
 
     // Функция удаления карточки
-    elementRemoveButton.addEventListener('click', _ => {
+    elementRemoveButton.addEventListener('click', () => {
         elementClone.remove(elementClone)
     })
 
@@ -164,7 +162,7 @@ const addElementToStart = (card) => {
 }
 
 // Открытие формы исправления профиля по кнопке
-editButton.addEventListener('click', _ => {
+editButton.addEventListener('click', () => {
     // Очистим попап
     popupCleaner(editProfilePopup, formValidationElements)
 
@@ -177,7 +175,7 @@ editButton.addEventListener('click', _ => {
 })
 
 // Открытие формы добавления карточки по кнопке
-addButton.addEventListener('click', _ => {
+addButton.addEventListener('click', () => {
     // Очистим попап
     popupCleaner(addElementPopup, formValidationElements)
 
