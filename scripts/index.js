@@ -1,8 +1,9 @@
+import {formValidationElements, data} from './data.js'
+import { Card } from './Card.js'
+import { FormValidator } from './FormValidator.js'
+
 // Находим родитель куда будут вставляться карточки
 const elements = document.querySelector('.elements')
-// Находим темплейт карточки
-const elementTemplate = document.querySelector('#element').content
-const element = elementTemplate.querySelector('.element')
 
 // Цепанем на константы аутпуты в профиле
 const nameOutput = document.querySelector('.profile__name')
@@ -10,23 +11,27 @@ const descriptionOutput = document.querySelector('.profile__description')
 
 // Находим кнопку редактирования профиля
 const editButton = document.querySelector('.profile__openPopupButton')
+
 // Находим попап редактирования профиля
 const editProfilePopup = document.querySelector('.popup_editProfile')
 
 // Находим форму редактирования профиля внутри попапа
-const editProfileForm = editProfilePopup.querySelector('.popup__form')
+const editProfileForm = editProfilePopup.querySelector(formValidationElements.formSelector)
+
 // Найдем поля ввода
 const editProfileFormFirstInput = editProfileForm.querySelector('.popup__formInputText_firstInput')
 const editProfileFormSecondInput = editProfileForm.querySelector('.popup__formInputText_secondInput')
+
+
 
 // Находим кнопку добавления карточки
 const addButton = document.querySelector('.profile__addButton')
 // Находим попап добавления карточки
 const addElementPopup = document.querySelector('.popup_addElement')
 
-
 // Находим форму редактирования профиля внутри попапа
-const addElementForm = addElementPopup.querySelector('.popup__form')
+const addElementForm = addElementPopup.querySelector(formValidationElements.formSelector)
+
 // Найдем поля ввода
 const addElementFormFirstInput = addElementForm.querySelector('.popup__formInputText_firstInput')
 const addElementFormSecondInput = addElementForm.querySelector('.popup__formInputText_secondInput')
@@ -42,7 +47,6 @@ const lightBoxFigcaption = lightBoxPopup.querySelector('.popup__lightBoxFigcapti
 const popupsList = Array.from(document.querySelectorAll('.popup'))
 
 //Функция проверки открыт ли попап и добавления слушателя события кнопки esc
-
 const keyHandler = (evt) => {
     const openedPopup = document.querySelector('.popup_opened')
     if (evt.key === 'Escape') {
@@ -71,8 +75,6 @@ const popupCleaner = (popup, { inputSelector, errorClass, submitButtonSelector, 
     const formInputErrors = popup.querySelectorAll(`.${errorClass}`)
     const formButton = popup.querySelector(submitButtonSelector)
 
-
-
     if (!formButton.classList.contains(inactiveButtonClass)) {
         formButton.classList.add(inactiveButtonClass)
         formButton.disabled = true
@@ -89,7 +91,6 @@ const popupCleaner = (popup, { inputSelector, errorClass, submitButtonSelector, 
     })
 }
 
-
 // Функция закрытия попапа по крестику или полю за формой
 popupsList.forEach((popup) => {
     // Найдем крестик в попапе
@@ -102,64 +103,6 @@ popupsList.forEach((popup) => {
         popupClose(popup)
     })
 })
-
-// Функция создающая карточку
-const generateElement = (name, link) => {
-    // Клонируем темплейт карточки
-    const elementClone = element.cloneNode(true)
-
-    // Объявляем в константы элементы
-    const elementRemoveButton = elementClone.querySelector('.element__removeButton')
-    const elementLikeButton = elementClone.querySelector('.element__likeButton')
-    const elementTitle = elementClone.querySelector('.element__title')
-    const elementImage = elementClone.querySelector('.element__image')
-
-    // Накидываем значения на аргументы функции
-    elementTitle.textContent = name
-    elementImage.alt = name
-    elementImage.src = link
-
-    // Функция удаления карточки на мусорном вердре
-    elementRemoveButton.addEventListener('click', () => {
-        elementClone.remove(elementClone)
-    })
-
-    // Функция таггла лайка на лайкокнопке
-    elementLikeButton.addEventListener('click', () => {
-        const LikeButtonImage = elementLikeButton.querySelector('.element__likeButtonImage')
-        LikeButtonImage.classList.toggle('element__likeButtonImage_toggled')
-    })
-
-    // Функция удаления карточки
-    elementRemoveButton.addEventListener('click', () => {
-        elementClone.remove(elementClone)
-    })
-
-    // функция создания лайтбокса
-    const elementLiteBoxListeners = elementClone.querySelectorAll('.element__image, .element__title')
-    elementLiteBoxListeners.forEach ((el) => {
-        el.addEventListener('click', (evt) => {
-            if (evt.target !== elementRemoveButton) {
-                // Накидываем значения на аргументы функции
-                lightBoxFigcaption.textContent = elementTitle.textContent
-                lightBoxImage.alt = elementImage.alt
-                lightBoxImage.src = elementImage.src
-
-
-                // Открываем попап лайтбокса
-                popupOpen(lightBoxPopup)
-            }
-        })
-    })
-
-    //возвращаем сгенерированную карточку
-    return elementClone
-}
-
-//функция добавления сгенерированной карточки в начало родителя
-const addElementToStart = (card) => {
-    elements.prepend(card)
-}
 
 // Открытие формы исправления профиля по кнопке
 editButton.addEventListener('click', () => {
@@ -203,24 +146,45 @@ addElementForm.addEventListener('submit',(evt) => {
     evt.preventDefault()
 
     // Объявляем имя и ссылку в константы
-    const name = addElementFormFirstInput.value
-    const link = addElementFormSecondInput.value
+    const newAddedCard = {
+        link: addElementFormSecondInput.value,
+        name: addElementFormFirstInput.value,
+    }
 
     // Вставляем полностью собранную карточку
-    addElementToStart(generateElement(name, link))
-
-
+    addElementToStart(newAddedCard)
 
     // Закрываем попап
-
     popupClose(addElementPopup)
 })
 
-// Заполнение карточек из массива
-initialCards.forEach ((el) => {
-    // Объявляем имя и ссылку в константы
-    const name = el.name
-    const link = el.link
+const setLightBoxPopupOpener = (card) => {
+    card.querySelectorAll('.element__image, .element__title').forEach ((el) => {
+        el.addEventListener('click', (evt) => {
+            if (evt.target !== card.querySelector('.element__removeButton')) {
+                // Накидываем значения на аргументы функции
+                lightBoxFigcaption.textContent = card.querySelector('.element__title').textContent
+                lightBoxImage.alt = card.querySelector('.element__image').alt
+                lightBoxImage.src = card.querySelector('.element__image').src
+                // Открываем попап лайтбокса
+                popupOpen(lightBoxPopup)
+            }
+        })
+    })
+}
+
+//функция добавления сгенерированной карточки в начало родителя
+const addElementToStart = (card) => {
+    const newCard = new Card(card, '#element').generateCard()
+    setLightBoxPopupOpener(newCard)
     //вставляем полностью собранную карточку
-    addElementToStart(generateElement(name, link))
+    elements.prepend(newCard)
+}
+
+data.forEach ((card) => {
+    addElementToStart (card)
 })
+
+new FormValidator(formValidationElements,editProfileForm).enableValidation ()
+new FormValidator(formValidationElements,addElementForm).enableValidation ()
+
