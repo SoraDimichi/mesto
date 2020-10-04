@@ -13,31 +13,31 @@ export class Card {
       .cloneNode(true);
   }
 
-  _removeCard(cardClone) {
-    cardClone
+  _removeCard() {
+    this._element
       .querySelector(".element__removeButton")
       .addEventListener("click", () => {
-        cardClone.remove(this._element);
+        this._element.remove(this._element);
       });
   }
 
-  _likeCard(cardClone) {
-    cardClone
+  _likeCard() {
+    this._element
       .querySelector(".element__likeButton")
       .addEventListener("click", () => {
-        cardClone
+        this._element
           .querySelector(".element__likeButtonImage")
           .classList.toggle("element__likeButtonImage_toggled");
       });
   }
 
-  _callBackCardInfo(cardClone) {
-    cardClone
+  _callBackCardInfo() {
+    this._element
       .querySelectorAll(".element__image, .element__title")
       .forEach((el) => {
         el.addEventListener("click", (evt) => {
           if (
-            evt.target !== cardClone.querySelector(".element__removeButton")
+            evt.target !== this._element.querySelector(".element__removeButton")
           ) {
             return this._setLightBoxPopupOpener(this._name, this._link);
           }
@@ -45,10 +45,10 @@ export class Card {
       });
   }
 
-  _setEventListeners(cardClone) {
-    this._likeCard(cardClone);
-    this._removeCard(cardClone);
-    this._callBackCardInfo(cardClone);
+  _setEventListeners() {
+    this._likeCard();
+    this._removeCard();
+    this._callBackCardInfo();
   }
 
   generateCard() {
@@ -59,7 +59,7 @@ export class Card {
     this._element.querySelector(".element__image").alt = this._name;
     this._element.querySelector(".element__image").src = this._link;
 
-    this._setEventListeners(this._element);
+    this._setEventListeners();
 
     return this._element;
   }
