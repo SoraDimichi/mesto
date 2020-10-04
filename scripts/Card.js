@@ -1,53 +1,69 @@
 export class Card {
+  constructor(initialCards, cardSelector, setLightBoxPopupOpener) {
+    this._name = initialCards.name;
+    this._link = initialCards.link;
+    this._cardSelector = cardSelector;
+    this._setLightBoxPopupOpener = setLightBoxPopupOpener;
+  }
 
-    constructor(initialCards, cardSelector) {
-        this._name = initialCards.name
-        this._link = initialCards.link
-        this._cardSelector = cardSelector
-    }
+  _getTemplate() {
+    return document
+      .querySelector(this._cardSelector)
+      .content.querySelector(".element")
+      .cloneNode(true);
+  }
 
-    _getTemplate() {
-        return document
-            .querySelector(this._cardSelector)
-            .content
-            .querySelector('.element')
-            .cloneNode(true)
-    }
+  _removeCard(cardClone) {
+    cardClone
+      .querySelector(".element__removeButton")
+      .addEventListener("click", () => {
+        cardClone.remove(this._element);
+      });
+  }
 
-    _removeCard(cardClone) {
-        cardClone.querySelector('.element__removeButton').addEventListener('click', () => {
-            cardClone.remove(this._element)
-        })
-    }
+  _likeCard(cardClone) {
+    cardClone
+      .querySelector(".element__likeButton")
+      .addEventListener("click", () => {
+        cardClone
+          .querySelector(".element__likeButtonImage")
+          .classList.toggle("element__likeButtonImage_toggled");
+      });
+  }
 
-    _likeCard(cardClone) {
-        cardClone.querySelector('.element__likeButton').addEventListener('click', () => {
-            cardClone.querySelector('.element__likeButtonImage')
-                .classList
-                .toggle('element__likeButtonImage_toggled')
-        })
-    }
+  _callBackCardInfo(cardClone) {
+    cardClone
+      .querySelectorAll(".element__image, .element__title")
+      .forEach((el) => {
+        el.addEventListener("click", (evt) => {
+          if (
+            evt.target !== cardClone.querySelector(".element__removeButton")
+          ) {
+            return this._setLightBoxPopupOpener(this._name, this._link);
+          }
+        });
+      });
+  }
 
-    _setEventListeners(cardClone) {
-        this._likeCard(cardClone)
-        this._removeCard(cardClone)
-    }
+  _setEventListeners(cardClone) {
+    this._likeCard(cardClone);
+    this._removeCard(cardClone);
+    this._callBackCardInfo(cardClone);
+  }
 
-    generateCard() {
-        this._element = this._getTemplate();
+  generateCard() {
+    this._element = this._getTemplate();
 
-        this._element.querySelector('.element__title').textContent = this._name
+    this._element.querySelector(".element__title").textContent = this._name;
 
-        this._element.querySelector('.element__image').alt = this._name
-        this._element.querySelector('.element__image').src = this._link
+    this._element.querySelector(".element__image").alt = this._name;
+    this._element.querySelector(".element__image").src = this._link;
 
-        this._setEventListeners(this._element)
+    this._setEventListeners(this._element);
 
-        return this._element;
-    }
-
+    return this._element;
+  }
 }
-
 
 // // Функция создающая карточку
 // const generateElement = (name, link) => {
@@ -87,6 +103,3 @@ export class Card {
 //     //возвращаем сгенерированную карточку
 //     return elementClone
 // }
-
-
-
