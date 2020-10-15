@@ -1,9 +1,9 @@
 export class Card {
-  constructor(initialCards, cardSelector, setLightBoxPopupOpener) {
-    this._name = initialCards.name;
-    this._link = initialCards.link;
+  constructor(item, cardSelector, handleCardClick) {
+    this._name = item.firstInput;
+    this._link = item.secondInput;
     this._cardSelector = cardSelector;
-    this._setLightBoxPopupOpener = setLightBoxPopupOpener;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -31,7 +31,7 @@ export class Card {
       });
   }
 
-  _callBackCardInfo() {
+  _getCardInfo() {
     this._element
       .querySelectorAll(".element__image, .element__title")
       .forEach((el) => {
@@ -39,7 +39,7 @@ export class Card {
           if (
             evt.target !== this._element.querySelector(".element__removeButton")
           ) {
-            return this._setLightBoxPopupOpener(this._name, this._link);
+            return this._handleCardClick(this._name, this._link);
           }
         });
       });
@@ -48,7 +48,7 @@ export class Card {
   _setEventListeners() {
     this._likeCard();
     this._removeCard();
-    this._callBackCardInfo();
+    this._getCardInfo();
   }
 
   generateCard() {
