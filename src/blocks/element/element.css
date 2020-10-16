@@ -1,0 +1,19 @@
+@import url('__title/element__title.css');
+@import url('__image/element__image.css');
+@import url('__likeButton/element__likeButton.css');
+@import url('__likeButtonImage/element__likeButtonImage.css');
+@import url('__likeButtonImage/_toggled/element__likeButtonImage.css');
+@import url('__removeButton/element__removeButton.css');
+@import url('__removeButtonImage/element__removeButtonImage.css');
+
+.element {
+  margin: 0;
+  border-radius: 3.5%;
+  display: grid;
+  overflow: hidden;
+  background-color: #fff;
+  grid-template-columns: 21px minmax(185px, 1fr) 18px min-content 23px;
+  justify-content: space-between;
+  grid-template-rows: auto 80px;
+  position: relative;
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Mesto | Жак-Ив Кусто</title>
+</head>
+
+<body class="page">
+
+<header class="header">
+  <img class="header__logo" src="./images/__logo/header__logo.svg" alt="Логотип">
+</header>
+
+<main class="content">
+
+  <section class="profile">
+    <img class="profile__avatar" src="images/__avatar/profile__avatar.png" alt="аватар">
+    <h1 class="profile__name">Жак-Ив Кусто</h1>
+    <p class="profile__description">Исследователь океана</p>
+    <button class="profile__openPopupButton">
+      <img class="profile__openPopupButtonImage" src="./images/__editButton/profile__editButton.svg" alt="Отредактировать">
+    </button>
+    <button class="profile__addButton">
+      +
+    </button>
+  </section>
+
+  <ul class="elements">
+
+  </ul>
+
+</main>
+
+<footer class="footer">
+  <p class="footer__copyright">
+    © 2020 Mesto Russia
+  </p>
+</footer>
+
+<div class="popup popup_editProfile">
+  <button class="popup__closeButton">
+    <img class="popup__closeButtonImage" src="./images/__closeButtonImage/popup__closeButtonImage.svg" alt="закрыть">
+  </button>
+  <form class="popup__form" novalidate>
+    <fieldset class="popup__formFieldSet">
+      <legend class="popup__formTitle">Редактировать профиль</legend>
+      <label class="popup__formField">
+        <input type="text" title="Имя" placeholder="Имя" id="profileNameInput"
+               class="popup__formInputText popup__formInputText_firstInput"
+               required minlength="2" maxlength="40">
+        <span class="" id="profileNameInputError"></span>
+      </label>
+      <label class="popup__formField">
+        <input type="text" title="О себе" placeholder="О себе" id="profileDescriptionInput"
+               class="popup__formInputText popup__formInputText_secondInput"
+               required minlength="2" maxlength="200">
+        <span class="" id="profileDescriptionInputError"></span>
+      </label>
+      <input type="submit" title="Отправить" value="Отправить"
+             class="popup__formSubmitButton popup__formSubmitButton_disabled " disabled>
+    </fieldset>
+  </form>
+</div>
+
+<div class="popup popup_addElement">
+  <button class="popup__closeButton">
+    <img class="popup__closeButtonImage" src="./images/__closeButtonImage/popup__closeButtonImage.svg" alt="закрыть">
+  </button>
+  <form class="popup__form" novalidate>
+    <fieldset class="popup__formFieldSet">
+      <legend class="popup__formTitle">Новое место</legend>
+      <label class="popup__formField">
+        <input type="text" title="Название" placeholder="Название" id="placeNameInput"
+               class="popup__formInputText popup__formInputText_firstInput"
+               required minlength="1" maxlength="30">
+        <span class="" id="placeNameInputError"></span>
+      </label>
+      <label class="popup__formField">
+        <input type="url" title="Ссылка на картинку" placeholder="Ссылка на картинку" id="placeUrlInput"
+               class="popup__formInputText popup__formInputText_secondInput"
+               required>
+        <span class="" id="placeUrlInputError"></span>
+      </label>
+      <input type="submit" title="Отправить" value="Отправить" class="popup__formSubmitButton popup__formSubmitButton_disabled" disabled>
+    </fieldset>
+  </form>
+</div>
+
+<div class="popup popup_lightBox">
+  <button class="popup__closeButton">
+    <img class="popup__closeButtonImage" src="./images/__closeButtonImage/popup__closeButtonImage.svg" alt="закрыть">
+  </button>
+  <figure class="popup__lightBoxContainer">
+    <img class="popup__lightBoxImage" src="#" alt="пустая картинка">
+    <figcaption class="popup__lightBoxFigcaption"></figcaption>
+  </figure>
+</div>
+
+<template id="element">
+  <li class="element">
+    <button class="element__removeButton">
+      <img class="element__removeButtonImage" src="./images/__removeButtonImage/element__removeButtonImage.svg" alt="Удалить">
+    </button>
+    <img class="element__image" src="#" alt="пустая картинка">
+    <p class="element__title"></p>
+    <button class="element__likeButton">
+      <img class="element__likeButtonImage" src="./images/__likeButton/element__likeButtonImage.svg" alt="Нравится">
+    </button>
+  </li>
+</template>
+
+</body>

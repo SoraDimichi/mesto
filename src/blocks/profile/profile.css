@@ -1,6 +1,6 @@
-@import url('./__avatar/profile__avatar.css');
-@import url('./__name/profile__name.css');
-@import url('./__description/profile__description.css');
+@import url('__avatar/profile__avatar.css');
+@import url('__name/profile__name.css');
+@import url('__description/profile__description.css');
 @import url('__openPopupButton/profile__openPopupButton.css');
 @import url('__openPopupButtonImage/profile__openPopupButtonImage.css');
 @import url('__addButton/profile__addButton.css');

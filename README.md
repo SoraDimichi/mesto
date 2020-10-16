@@ -12,15 +12,36 @@ https://soradimichi.github.io/mesto/
 
 * CSS
 * HTML
-* JavaScript
+* JS ES6 ООП
 
 Что бы запустить, нужно открыть index.html в любом браузере.
 
+## Собран веб-паком при использовании следующих пакетов
+
+* npm i webpack --save-dev
+* npm i webpack-cli --save-dev
+* npm i webpack-dev-server --save-dev
+* npm i @babel/core --save-dev
+* npm i @babel/preset-env --save-dev
+* npm i core-js --save
+* npm i babel-loader --save-dev
+* npm i html-webpack-plugin --save-dev 
+* npm i file-loader --save-dev
+* npm i html-loader --save-dev
+* npm i css-loader --save-dev
+* npm i style-loader --save-dev
+* npm i mini-css-extract-plugin --save-dev 
+* npm i postcss-loader --save-dev
+* npm i autoprefixer --save-dev
+* npm i cssnano --save-dev 
+* npm i rimraf --save-dev 
+* npm i gh-pages --save-dev
+
+Установить разом:
+`npm i webpack --save-dev && npm i webpack-cli --save-dev && npm i webpack-dev-server --save-dev && npm i @babel/core --save-dev && npm i @babel/preset-env --save-dev && npm i core-js --save && npm i babel-loader --save-dev && npm i html-webpack-plugin --save-dev && npm i file-loader --save-dev && npm i html-loader --save-dev && npm i css-loader --save-dev && npm i mini-css-extract-plugin --save-dev && npm i postcss-loader --save-dev && npm i autoprefixer --save-dev && npm i cssnano --save-dev && npm i rimraf --save-dev && npm i gh-pages --save-dev && npm i style-loader --save-dev
+`
 ### Планы по доработке проекта
 
-* Проверить код на кроссбраузерность и дописать все вендорные префиксы, что бы верно отображалась информация во всех браузерах.
-* Доделать проверку текста для включения кнопки
-* Пофиксить баг, что бы поинтер был на тексте в карточках
-* Пофиксить баг, обрезания текста (повысить лайн хейт)
-* Сделать проверку 404 ошибки с ретурном
+* Запилить селекторы в конструкторах
+* Собрать Вебпаком
 
