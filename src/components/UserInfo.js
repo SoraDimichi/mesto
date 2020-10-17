@@ -13,8 +13,8 @@ export class UserInfo {
     };
   }
 
-  setUserInfo({ firstInput, secondInput }) {
-    this._nameOnPage.textContent = firstInput;
-    this._descriptionOnPage.textContent = secondInput;
+  setUserInfo({ name, description }) {
+    this._nameOnPage.textContent = name;
+    this._descriptionOnPage.textContent = description;
   }
 }

@@ -29,8 +29,10 @@ const transceiverUserInfo = new UserInfo(
 );
 
 const popupEditProfile = new PopupWithForm(editProfilePopupSelector, {
-  sendInputValues: (values) => {
-    transceiverUserInfo.setUserInfo(values);
+  sendInputValues: ({ firstInput, secondInput }) => {
+    const name = firstInput;
+    const description = secondInput;
+    transceiverUserInfo.setUserInfo({ name, description });
   },
 });
 
