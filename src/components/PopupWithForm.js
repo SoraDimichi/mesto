@@ -1,8 +1,8 @@
 import { Popup } from "./Popup.js";
 
 export class PopupWithForm extends Popup {
-  constructor(popupSelector, keyNumber, { sendInputValues }) {
-    super(popupSelector, keyNumber);
+  constructor(popupSelector, { sendInputValues }) {
+    super(popupSelector);
     this._sendInputValues = sendInputValues;
 
     this._form = this._popup.querySelector(".popup__form");
@@ -19,15 +19,6 @@ export class PopupWithForm extends Popup {
       this._sendInputValues(this._getInputValues());
       this.close();
     };
-  }
-
-  _getInputValues() {
-    return [
-      {
-        firstInput: this._firstInput.value,
-        secondInput: this._secondInput.value,
-      },
-    ];
   }
 
   _cleanPopupForm() {
@@ -54,9 +45,16 @@ export class PopupWithForm extends Popup {
     this._form.removeEventListener("submit", this._submit);
   }
 
-  receiveInputValues(receivedValues) {
-    this._firstInput.value = receivedValues[0].firstInput;
-    this._secondInput.value = receivedValues[0].secondInput;
+  _getInputValues() {
+    return {
+      firstInput: this._firstInput.value,
+      secondInput: this._secondInput.value,
+    };
+  }
+
+  receiveInputValues({ name, description }) {
+    this._firstInput.value = name;
+    this._secondInput.value = description;
   }
 
   setEventListeners() {

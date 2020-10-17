@@ -1,9 +1,12 @@
+import { escapeCode } from "../utils/constants.js";
+
+//Я просто не хотел связывать класс с импортами
+
 export class Popup {
-  constructor(popupSelector, keyNumber) {
+  constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);
-    this._keyNumber = keyNumber;
     this._handleEscClose = (evt) => {
-      if (evt.keyCode === this._keyNumber) {
+      if (evt.keyCode === escapeCode) {
         this.close();
       }
     };

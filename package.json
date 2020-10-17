@@ -6,6 +6,7 @@
   "scripts": {
     "deploy": "gh-pages -d dist",
     "build": "rimraf dist && webpack",
+    "delete": "rimraf dist",
     "dev": "webpack-dev-server --open"
   },
   "repository": {

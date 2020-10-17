@@ -1,3 +1,5 @@
+import "./index.css";
+
 import {
   formElements,
   data,
@@ -11,10 +13,7 @@ import {
   editProfilePopupSelector,
   profileNameSelector,
   profileDescriptionSelector,
-  escapeCode,
 } from "../utils/constants.js";
-
-import "./index.css";
 
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
@@ -29,40 +28,32 @@ const transceiverUserInfo = new UserInfo(
   profileDescriptionSelector
 );
 
-const popupEditProfile = new PopupWithForm(
-  editProfilePopupSelector,
-  escapeCode,
-  {
-    sendInputValues: (values) => {
-      transceiverUserInfo.setUserInfo(values);
-    },
-  }
-);
+const popupEditProfile = new PopupWithForm(editProfilePopupSelector, {
+  sendInputValues: (values) => {
+    transceiverUserInfo.setUserInfo(values);
+  },
+});
 
 editButton.addEventListener("click", () => {
   popupEditProfile.receiveInputValues(transceiverUserInfo.getUserInfo());
   popupEditProfile.open();
 });
 
-const lightBox = new PopupWithImage(lightBoxPopupSelector, escapeCode);
+const lightBox = new PopupWithImage(lightBoxPopupSelector);
 
-const popupAddImage = new PopupWithForm(addElementPopupSelector, escapeCode, {
-  sendInputValues: (cardInfo) => {
-    const addSectionNow = new Section(
-      {
-        items: cardInfo,
-        renderer: (item) => {
-          const newCard = new Card(item, "#element", {
-            sendCardInfo: (cardInfo) => {
-              lightBox.open(cardInfo);
-            },
-          }).generateCard();
-          defaultSectionList.addItem(newCard);
-        },
-      },
-      elementsSelector
-    );
-    addSectionNow.render();
+const newCard = (item) => {
+  return new Card(item, "#element", {
+    sendCardInfo: (item) => {
+      lightBox.open(item);
+    },
+  });
+};
+
+const popupAddImage = new PopupWithForm(addElementPopupSelector, {
+  sendInputValues: ({ firstInput, secondInput }) => {
+    const name = firstInput;
+    const link = secondInput;
+    defaultSection.addItem(newCard({ name, link }).generateCard());
   },
 });
 
@@ -70,22 +61,16 @@ addButton.addEventListener("click", () => {
   popupAddImage.open();
 });
 
-const defaultSectionList = new Section(
+const defaultSection = new Section(
   {
     items: data,
-    renderer: (item) => {
-      const newCard = new Card(item, "#element", {
-        sendCardInfo: (cardInfo) => {
-          lightBox.open(cardInfo);
-        },
-      }).generateCard();
-      defaultSectionList.addItem(newCard);
-    },
+    renderer: ({ name, link }) =>
+      defaultSection.addItem(newCard({ name, link }).generateCard()),
   },
   elementsSelector
 );
 
-defaultSectionList.render();
+defaultSection.render();
 
 new FormValidator(formElements, editProfileForm).enableValidation();
 new FormValidator(formElements, addElementForm).enableValidation();

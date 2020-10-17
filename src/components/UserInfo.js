@@ -7,16 +7,14 @@ export class UserInfo {
   }
 
   getUserInfo() {
-    return [
-      {
-        firstInput: this._nameOnPage.textContent,
-        secondInput: this._descriptionOnPage.textContent,
-      },
-    ];
+    return {
+      name: this._nameOnPage.textContent,
+      description: this._descriptionOnPage.textContent,
+    };
   }
 
-  setUserInfo(receivedUserInfo) {
-    this._nameOnPage.textContent = receivedUserInfo[0].firstInput;
-    this._descriptionOnPage.textContent = receivedUserInfo[0].secondInput;
+  setUserInfo({ firstInput, secondInput }) {
+    this._nameOnPage.textContent = firstInput;
+    this._descriptionOnPage.textContent = secondInput;
   }
 }

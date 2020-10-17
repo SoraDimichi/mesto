@@ -1,7 +1,7 @@
 export class Card {
-  constructor(item, cardSelector, { sendCardInfo }) {
-    this._name = item.firstInput;
-    this._link = item.secondInput;
+  constructor({ name, link }, cardSelector, { sendCardInfo }) {
+    this._name = name;
+    this._link = link;
     this._cardSelector = cardSelector;
     this._sendCardInfo = sendCardInfo;
   }
@@ -32,12 +32,10 @@ export class Card {
   }
 
   _returnCardInfo() {
-    return [
-      {
-        firstInput: this._name,
-        secondInput: this._link,
-      },
-    ];
+    return {
+      name: this._name,
+      link: this._link,
+    };
   }
 
   _handleCardClick() {
@@ -62,7 +60,6 @@ export class Card {
 
   generateCard() {
     this._element = this._getTemplate();
-
     this._element.querySelector(".element__title").textContent = this._name;
 
     this._element.querySelector(".element__image").alt = this._name;
