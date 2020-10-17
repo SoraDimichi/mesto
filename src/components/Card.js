@@ -40,7 +40,7 @@ export class Card {
     ];
   }
 
-  _getCardInfo() {
+  _handleCardClick() {
     this._element
       .querySelectorAll(".element__image, .element__title")
       .forEach((el) => {
@@ -57,7 +57,7 @@ export class Card {
   _setEventListeners() {
     this._likeCard();
     this._removeCard();
-    this._getCardInfo();
+    this._handleCardClick();
   }
 
   generateCard() {

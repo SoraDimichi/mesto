@@ -6,7 +6,7 @@ export class UserInfo {
     );
   }
 
-  returnUserInfo() {
+  getUserInfo() {
     return [
       {
         firstInput: this._nameOnPage.textContent,

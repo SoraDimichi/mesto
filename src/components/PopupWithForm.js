@@ -16,12 +16,12 @@ export class PopupWithForm extends Popup {
 
     this._submit = (evt) => {
       evt.preventDefault();
-      this._sendInputValues(this._returnInputValues());
+      this._sendInputValues(this._getInputValues());
       this.close();
     };
   }
 
-  _returnInputValues() {
+  _getInputValues() {
     return [
       {
         firstInput: this._firstInput.value,

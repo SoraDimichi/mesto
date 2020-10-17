@@ -39,7 +39,13 @@ const popupEditProfile = new PopupWithForm(
   }
 );
 
+editButton.addEventListener("click", () => {
+  popupEditProfile.receiveInputValues(transceiverUserInfo.getUserInfo());
+  popupEditProfile.open();
+});
+
 const lightBox = new PopupWithImage(lightBoxPopupSelector, escapeCode);
+
 const popupAddImage = new PopupWithForm(addElementPopupSelector, escapeCode, {
   sendInputValues: (cardInfo) => {
     const addSectionNow = new Section(
@@ -60,6 +66,10 @@ const popupAddImage = new PopupWithForm(addElementPopupSelector, escapeCode, {
   },
 });
 
+addButton.addEventListener("click", () => {
+  popupAddImage.open();
+});
+
 const defaultSectionList = new Section(
   {
     items: data,
@@ -74,15 +84,6 @@ const defaultSectionList = new Section(
   },
   elementsSelector
 );
-
-editButton.addEventListener("click", () => {
-  popupEditProfile.receiveInputValues(transceiverUserInfo.returnUserInfo());
-  popupEditProfile.open();
-});
-
-addButton.addEventListener("click", () => {
-  popupAddImage.open();
-});
 
 defaultSectionList.render();
 
