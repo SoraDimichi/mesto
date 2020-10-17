@@ -1,4 +1,4 @@
-export const formValidationElements = {
+export const formElements = {
   formSelector: ".popup__form",
   inputSelector: ".popup__formInputText",
   submitButtonSelector: ".popup__formSubmitButton",
@@ -14,18 +14,19 @@ export const editButton = document.querySelector(".profile__openPopupButton");
 export const editProfilePopupSelector = ".popup_editProfile";
 export const editProfileForm = document
   .querySelector(".popup_editProfile")
-  .querySelector(formValidationElements.formSelector);
+  .querySelector(formElements.formSelector);
 
 export const addButton = document.querySelector(".profile__addButton");
 export const addElementPopupSelector = ".popup_addElement";
 export const addElementForm = document
   .querySelector(addElementPopupSelector)
-  .querySelector(formValidationElements.formSelector);
+  .querySelector(formElements.formSelector);
 
 export const lightBoxPopupSelector = ".popup_lightBox";
 
 export const elementsSelector = ".elements";
 
+export const escapeCode = 27;
 // Массив карточек по умолчанию
 export const data = [
   {

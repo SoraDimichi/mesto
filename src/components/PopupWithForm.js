@@ -1,49 +1,48 @@
 import { Popup } from "./Popup.js";
 
 export class PopupWithForm extends Popup {
-  constructor(popupSelector, { handleFormSubmit }) {
-    super(popupSelector);
-    this._handleFormSubmit = handleFormSubmit;
-    this._bindedSubmit = this._submit.bind(this);
+  constructor(popupSelector, keyNumber, { sendInputValues }) {
+    super(popupSelector, keyNumber);
+    this._sendInputValues = sendInputValues;
+
+    this._form = this._popup.querySelector(".popup__form");
+    this._firstInput = this._form.querySelector(
+      ".popup__formInputText_firstInput"
+    );
+    this._secondInput = this._form.querySelector(
+      ".popup__formInputText_secondInput"
+    );
+    this._formButton = this._form.querySelector(".popup__formSubmitButton");
+
+    this._submit = (evt) => {
+      evt.preventDefault();
+      this._sendInputValues(this._returnInputValues());
+      this.close();
+    };
   }
 
-  _submit(evt) {
-    evt.preventDefault();
-    this._handleFormSubmit(this._getInputValues());
-    this.close();
-  }
-
-  _getInputValues() {
-    this._formValues = [
+  _returnInputValues() {
+    return [
       {
-        firstInput: this._popup.querySelector(
-          ".popup__formInputText_firstInput"
-        ).value,
-        secondInput: this._popup.querySelector(
-          ".popup__formInputText_secondInput"
-        ).value,
+        firstInput: this._firstInput.value,
+        secondInput: this._secondInput.value,
       },
     ];
-
-    return this._formValues;
   }
 
   _cleanPopupForm() {
     if (
-      !this._popup
-        .querySelector(".popup__formSubmitButton")
-        .classList.contains("popup__formSubmitButton_disabled")
+      !this._formButton.classList.contains("popup__formSubmitButton_disabled")
     ) {
-      this._popup
-        .querySelector(".popup__formSubmitButton")
-        .classList.add("popup__formSubmitButton_disabled");
-      this._popup.querySelector(".popup__formSubmitButton").disabled = true;
+      this._formButton.classList.add("popup__formSubmitButton_disabled");
+      this._formButton.disabled = true;
     }
 
-    this._popup.querySelectorAll(".popup__formInputText").forEach((input) => {
-      input.classList.remove("popup__formInputText_error");
-      input.value = "";
-    });
+    this._secondInput.classList.remove("popup__formInputText_error");
+    this._secondInput.value = "";
+
+    this._firstInput.classList.remove("popup__formInputText_error");
+    this._firstInput.value = "";
 
     this._popup
       .querySelectorAll(".popup__formInputError")
@@ -52,16 +51,17 @@ export class PopupWithForm extends Popup {
         formInputError.textContent = "";
       });
 
-    this._popup
-      .querySelector(".popup__form")
-      .removeEventListener("submit", this._bindedSubmit);
+    this._form.removeEventListener("submit", this._submit);
+  }
+
+  receiveInputValues(receivedValues) {
+    this._firstInput.value = receivedValues[0].firstInput;
+    this._secondInput.value = receivedValues[0].secondInput;
   }
 
   setEventListeners() {
     super.setEventListeners();
-    this._popup
-      .querySelector(".popup__form")
-      .addEventListener("submit", this._bindedSubmit);
+    this._form.addEventListener("submit", this._submit);
   }
 
   close() {
@@ -70,7 +70,7 @@ export class PopupWithForm extends Popup {
   }
 
   open() {
-    this.setEventListeners();
     super.open();
+    this.setEventListeners();
   }
 }

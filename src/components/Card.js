@@ -1,9 +1,9 @@
 export class Card {
-  constructor(item, cardSelector, handleCardClick) {
+  constructor(item, cardSelector, { sendCardInfo }) {
     this._name = item.firstInput;
     this._link = item.secondInput;
     this._cardSelector = cardSelector;
-    this._handleCardClick = handleCardClick;
+    this._sendCardInfo = sendCardInfo;
   }
 
   _getTemplate() {
@@ -31,6 +31,15 @@ export class Card {
       });
   }
 
+  _returnCardInfo() {
+    return [
+      {
+        firstInput: this._name,
+        secondInput: this._link,
+      },
+    ];
+  }
+
   _getCardInfo() {
     this._element
       .querySelectorAll(".element__image, .element__title")
@@ -39,7 +48,7 @@ export class Card {
           if (
             evt.target !== this._element.querySelector(".element__removeButton")
           ) {
-            return this._handleCardClick(this._name, this._link);
+            this._sendCardInfo(this._returnCardInfo());
           }
         });
       });
@@ -64,42 +73,3 @@ export class Card {
     return this._element;
   }
 }
-
-// // Функция создающая карточку
-// const generateElement = (name, link) => {
-//     // Клонируем темплейт карточки
-//     const elementClone = element.cloneNode(true)
-//
-//     // Объявляем в константы элементы
-//     const elementRemoveButton = elementClone.querySelector('.element__removeButton')
-//     const elementLikeButton = elementClone.querySelector('.element__likeButton')
-//     const elementTitle = elementClone.querySelector('.element__title')
-//     const elementImage = elementClone.querySelector('.element__image')
-//
-//     // Накидываем значения на аргументы функции
-//     elementClone.querySelector('.element__title').textContent = name
-//     elementClone.querySelector('.element__image').alt = name
-//     elementClone.querySelector('.element__image').src = link
-//
-//     // Функция удаления карточки на мусорном вердре
-//     elementRemoveButton.addEventListener('click', () => {
-//         elementClone.remove(elementClone)
-//     })
-//
-//     // Функция таггла лайка на лайкокнопке
-//     elementLikeButton.addEventListener('click', () => {
-//         const LikeButtonImage = elementLikeButton.querySelector('.element__likeButtonImage')
-//         LikeButtonImage.classList.toggle('element__likeButtonImage_toggled')
-//     })
-//
-//     // Функция удаления карточки
-//     elementRemoveButton.addEventListener('click', () => {
-//         elementClone.remove(elementClone)
-//     })
-//
-//     // функция создания лайтбокса
-//
-//
-//     //возвращаем сгенерированную карточку
-//     return elementClone
-// }

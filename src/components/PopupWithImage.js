@@ -1,22 +1,23 @@
 import { Popup } from "./Popup.js";
 export class PopupWithImage extends Popup {
-  constructor(popupSelector, name, link) {
-    super(popupSelector);
-    this._name = name;
-    this._link = link;
-  }
+  constructor(popupSelector, keyNumber) {
+    super(popupSelector, keyNumber);
 
-  _setCardInfo() {
-    this._popup.querySelector(
+    this._lightBoxFigcaption = this._popup.querySelector(
       ".popup__lightBoxFigcaption"
-    ).textContent = this._name;
-    this._popup.querySelector(".popup__lightBoxImage").alt = this._name;
-    this._popup.querySelector(".popup__lightBoxImage").src = this._link;
+    );
+    this._lightBoxImage = this._popup.querySelector(".popup__lightBoxImage");
   }
 
-  open() {
-    this._setCardInfo();
-    super.setEventListeners();
+  _receiveCardInfo(cardInfo) {
+    this._lightBoxFigcaption.textContent = cardInfo[0].firstInput;
+    this._lightBoxImage.alt = cardInfo[0].secondInput;
+    this._lightBoxImage.src = cardInfo[0].secondInput;
+  }
+
+  open(cardInfo) {
+    this._receiveCardInfo(cardInfo);
     super.open();
+    super.setEventListeners();
   }
 }

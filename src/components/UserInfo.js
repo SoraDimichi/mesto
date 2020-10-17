@@ -1,24 +1,22 @@
 export class UserInfo {
-  constructor({ profileNameSelector, profileDescriptionSelector }) {
+  constructor(profileNameSelector, profileDescriptionSelector) {
     this._nameOnPage = document.querySelector(profileNameSelector);
     this._descriptionOnPage = document.querySelector(
       profileDescriptionSelector
     );
-    this._nameInPopup = document
-      .querySelector(".popup_editProfile")
-      .querySelector(".popup__formInputText_firstInput");
-    this._descriptionInPopup = document
-      .querySelector(".popup_editProfile")
-      .querySelector(".popup__formInputText_secondInput");
   }
 
-  getUserInfo() {
-    this._nameInPopup.value = this._nameOnPage.textContent;
-    this._descriptionInPopup.value = this._descriptionOnPage.textContent;
+  returnUserInfo() {
+    return [
+      {
+        firstInput: this._nameOnPage.textContent,
+        secondInput: this._descriptionOnPage.textContent,
+      },
+    ];
   }
 
-  setUserInfo() {
-    this._nameOnPage.textContent = this._nameInPopup.value;
-    this._descriptionOnPage.textContent = this._descriptionInPopup.value;
+  setUserInfo(receivedUserInfo) {
+    this._nameOnPage.textContent = receivedUserInfo[0].firstInput;
+    this._descriptionOnPage.textContent = receivedUserInfo[0].secondInput;
   }
 }

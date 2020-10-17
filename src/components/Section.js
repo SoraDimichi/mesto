@@ -16,7 +16,7 @@ export class Section {
         item.secondInput = item.link;
         delete item.link;
       }
-      this._renderer(item);
+      return this._renderer(item);
     });
   }
 
