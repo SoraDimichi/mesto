@@ -9,9 +9,7 @@ export class FormValidator {
   }
 
   _checkInputValidity(inputElement) {
-    const errorElement = this._formElement.querySelector(
-      `#${inputElement.id}Error`
-    );
+    const errorElement = this._formElement.querySelector(`#${inputElement.id}Error`);
     if (!inputElement.validity.valid) {
       inputElement.classList.add(this._inputErrorClass);
       errorElement.textContent = inputElement.validationMessage;
@@ -19,7 +17,7 @@ export class FormValidator {
     } else {
       inputElement.classList.remove(this._inputErrorClass);
       errorElement.classList.remove(this._errorClass);
-      errorElement.textContent = "";
+      errorElement.textContent = '';
     }
   }
 
@@ -36,14 +34,10 @@ export class FormValidator {
   }
 
   _setEventListeners() {
-    const inputList = Array.from(
-      this._formElement.querySelectorAll(this._inputSelector)
-    );
-    const buttonElement = this._formElement.querySelector(
-      this._submitButtonSelector
-    );
+    const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+    const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
     inputList.forEach((inputElement) => {
-      inputElement.addEventListener("input", () => {
+      inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);
         this._toggleButton(inputList, buttonElement);
       });

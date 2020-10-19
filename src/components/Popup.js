@@ -1,6 +1,4 @@
-import { escapeCode } from "../utils/constants.js";
-
-//Я просто не хотел связывать класс с импортами
+import { escapeCode } from '../utils/constants.js';
 
 export class Popup {
   constructor(popupSelector) {
@@ -13,20 +11,20 @@ export class Popup {
   }
 
   open() {
-    this._popup.classList.add("popup_opened");
-    document.addEventListener("keydown", this._handleEscClose);
+    this._popup.classList.add('popup_opened');
+    document.addEventListener('keydown', this._handleEscClose);
   }
 
   close() {
-    this._popup.classList.remove("popup_opened");
-    document.removeEventListener("keydown", this._handleEscClose);
+    this._popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', this._handleEscClose);
   }
 
   setEventListeners() {
-    this._popup.addEventListener("click", (evt) => {
+    this._popup.addEventListener('click', (evt) => {
       if (
         evt.target !== evt.currentTarget &&
-        evt.target !== this._popup.querySelector(".popup__closeButton")
+        evt.target !== this._popup.querySelector('.popup__closeButton')
       ) {
         return;
       }

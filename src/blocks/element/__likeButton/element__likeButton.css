@@ -1,12 +1,14 @@
 .element__likeButton {
-  grid-area: 2 / 4 / 3 / 5;
+  grid-area: 3 / 4 / 4 / 5;
   padding: 0;
   border: none;
   outline: none;
   font: inherit;
   color: inherit;
-  background: none;
+  height: 18px;
+  width: 20px;
   align-self: center;
+  background: url('../../../images/__likeButton/element__likeButtonImage.svg') no-repeat;
 }
 
 .element__likeButton:hover {
