@@ -25,7 +25,7 @@
 }
 
 @media screen and (max-width: 700px) {
-  .profile__avatarButton::before {
+  .profile__avatarButton::after {
     display: none;
   }
 }

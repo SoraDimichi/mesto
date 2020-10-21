@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="pages/index.css">
+<!--    <link rel="stylesheet" href="pages/index.css">-->
     <title>Mesto | Жак-Ив Кусто</title>
 </head>
 
@@ -50,12 +50,12 @@
         <fieldset class="popup__formFieldSet">
             <legend class="popup__formTitle">Обновить аватар</legend>
             <label class="popup__formField">
-                <input type="url" title="Ссылка на картинку" placeholder="Ссылка на картинку" id="avatarUrlInput"
+                <input type="url" title="Ссылка на аватар" placeholder="Ссылка на картинку" id="avatarUrlInput"
                        class="popup__formInputText popup__formInputText_firstInput"
                        required>
                 <span class="" id="avatarUrlInputError"></span>
             </label>
-            <input type="submit" title="Отправить" value="Отправить"
+            <input type="submit" title="Сохранить" value="Сохранить"
                    class="popup__formSubmitButton popup__formSubmitButton_disabled" disabled>
         </fieldset>
     </form>
@@ -81,12 +81,11 @@
                        required minlength="2" maxlength="200">
                 <span class="" id="profileAboutInputError"></span>
             </label>
-            <input type="submit" title="Отправить" value="Отправить"
+            <input type="submit" title="Сохранить" value="Сохранить"
                    class="popup__formSubmitButton popup__formSubmitButton_disabled " disabled>
         </fieldset>
     </form>
 </div>
-
 
 <div class="popup popup_addElement">
     <button class="popup__closeButton">
@@ -108,7 +107,7 @@
                        required>
                 <span class="" id="placeUrlInputError"></span>
             </label>
-            <input type="submit" title="Отправить" value="Отправить"
+            <input type="submit" title="Сохранить" value="Сохранить"
                    class="popup__formSubmitButton popup__formSubmitButton_disabled" disabled>
         </fieldset>
     </form>
@@ -125,8 +124,7 @@
     </figure>
 </div>
 
-
-<div class="popup popup__submitDeletion">
+<div class="popup popup__removeCard">
     <button class="popup__closeButton">
         <img class="popup__closeButtonImage" src="./images/__closeButtonImage/popup__closeButtonImage.svg"
              alt="закрыть">
@@ -134,13 +132,11 @@
     <form class="popup__form" novalidate>
         <fieldset class="popup__formFieldSet">
             <legend class="popup__formTitle">Вы уверены?</legend>
-            <input type="submit" title="Отправить" value="Отправить"
-                   class="popup__formSubmitButton popup__formSubmitButton_disabled" disabled>
+            <input type="submit" title="Да" value="Да"
+                   class="popup__formSubmitButton">
         </fieldset>
     </form>
 </div>
-
-
 
 <template id="element">
     <li class="element">
@@ -155,5 +151,5 @@
     </li>
 </template>
 
-<script type="module" src="pages/index.js"></script>
+<!--<script type="module" src="pages/index.js"></script>-->
 </body>

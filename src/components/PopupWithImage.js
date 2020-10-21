@@ -1,22 +1,23 @@
-import { Popup } from './Popup.js'
+import { Popup } from './Popup.js';
 
 export class PopupWithImage extends Popup {
   constructor(popupSelector) {
-    super(popupSelector)
+    super(popupSelector);
 
-    this._lightBoxFigcaption = this._popup.querySelector('.popup__lightBoxFigcaption')
-    this._lightBoxImage = this._popup.querySelector('.popup__lightBoxImage')
+    this._lightBoxFigcaption = this._popup.querySelector('.popup__lightBoxFigcaption');
+    this._lightBoxImage = this._popup.querySelector('.popup__lightBoxImage');
+    this.open = this.open.bind(this);
   }
 
-  _receiveCardInfo({ name, link }) {
-    this._lightBoxFigcaption.textContent = name
-    this._lightBoxImage.alt = link
-    this._lightBoxImage.src = link
+  _receiveCardInfo(data) {
+    this._lightBoxFigcaption.textContent = data.name;
+    this._lightBoxImage.alt = data.link;
+    this._lightBoxImage.src = data.link;
   }
 
-  open({ name, link }) {
-    this._receiveCardInfo({ name, link })
-    super.open()
-    super.setEventListeners()
+  open(data) {
+    this._receiveCardInfo(data);
+    super.open();
+    super.setEventListeners();
   }
 }
