@@ -38,6 +38,14 @@ const api = new Api({
   },
 });
 
+const formEditAvatarValidation = new FormValidator(formElements, editAvatarForm);
+const formEditUserValidation = new FormValidator(formElements, editUserForm);
+const formAddImageValidation = new FormValidator(formElements, addElementForm);
+
+formEditAvatarValidation.enableValidation();
+formEditUserValidation.enableValidation();
+formAddImageValidation.enableValidation();
+
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, cardsData]) => {
     transceiverUserInfo.setUserInfo(userData);
@@ -51,9 +59,9 @@ const transceiverUserInfo = new UserInfo(
   profileAvatarSelector
 );
 
-const popupEditProfile = new PopupWithForm(editUserPopupSelector, {
+const popupEditUser = new PopupWithForm(editUserPopupSelector, {
   sendInputValues: ({ firstInput, secondInput }) => {
-    popupEditProfile.setLoading(true);
+    popupEditUser.setLoading(true);
     api
       .patchUserInfo({
         name: firstInput,
@@ -61,18 +69,18 @@ const popupEditProfile = new PopupWithForm(editUserPopupSelector, {
       })
       .then((result) => {
         transceiverUserInfo.setUserInfo(result);
-        popupEditProfile.close();
+        popupEditUser.close();
       })
       .catch((err) => console.log(err))
       .finally(() => {
-        popupEditProfile.setLoading(false);
+        popupEditUser.setLoading(false);
       });
   },
 });
 
 editUserButton.addEventListener('click', () => {
-  popupEditProfile.receiveInputValues(transceiverUserInfo.getUserInfo());
-  popupEditProfile.open();
+  popupEditUser.receiveInputValues(transceiverUserInfo.getUserInfo());
+  popupEditUser.open();
 });
 
 const popupEditAvatar = new PopupWithForm(editAvatarPopupSelector, {
@@ -114,7 +122,7 @@ const newCard = (item) => {
       data: item,
       handleCardClick: lightBox.open,
       handleDeleteClick: (item) => {
-        PopupDeleteCard.open(item);
+        popupDeleteCard.open(item);
       },
       handleCardLike: (item, isLiked) => api.like(item, isLiked),
     },
@@ -126,14 +134,15 @@ const newCard = (item) => {
 
 const lightBox = new PopupWithImage(lightBoxPopupSelector);
 
-const PopupDeleteCard = new PopupRemoveCard(removeCardPopup, {
+const popupDeleteCard = new PopupRemoveCard(removeCardPopup, {
   confirmRemoval: ({ id, deleteCard }) => {
     api
       .deleteCard(id)
-      .then(() => {})
+      .then(() => {
+        deleteCard();
+        popupDeleteCard.close();
+      })
       .catch((err) => console.log(err));
-    deleteCard();
-    PopupDeleteCard.close();
   },
 });
 
@@ -158,7 +167,3 @@ const popupAddImage = new PopupWithForm(addElementPopupSelector, {
 addButton.addEventListener('click', () => {
   popupAddImage.open();
 });
-
-new FormValidator(formElements, editAvatarForm).enableValidation();
-new FormValidator(formElements, editUserForm).enableValidation();
-new FormValidator(formElements, addElementForm).enableValidation();

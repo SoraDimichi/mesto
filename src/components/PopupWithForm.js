@@ -10,30 +10,7 @@ export class PopupWithForm extends Popup {
     this._secondInput = this._form.querySelector('.popup__formInputText_secondInput');
     this._formButton = this._form.querySelector('.popup__formSubmitButton');
 
-    this._submit = (evt) => {
-      evt.preventDefault();
-      this._sendInputValues(this._getInputValues());
-      this.close();
-    };
-  }
-
-  _cleanPopupForm() {
-    if (!this._formButton.classList.contains('popup__formSubmitButton_disabled')) {
-      this._formButton.classList.add('popup__formSubmitButton_disabled');
-      this._formButton.disabled = true;
-    }
-
-    this._popup.querySelectorAll('.popup__formInputText').forEach((formInputText) => {
-      formInputText.classList.remove('popup__formInputText_error');
-      formInputText.value = '';
-    });
-
-    this._popup.querySelectorAll('.popup__formInputError').forEach((formInputError) => {
-      formInputError.value = '';
-      formInputError.textContent = '';
-    });
-
-    this._form.removeEventListener('submit', this._submit);
+    this._submit = this._submit.bind(this);
   }
 
   _getInputValues() {
@@ -47,6 +24,11 @@ export class PopupWithForm extends Popup {
         firstInput: this._firstInput.value,
       };
     }
+  }
+
+  _submit(evt) {
+    evt.preventDefault();
+    this._sendInputValues(this._getInputValues());
   }
 
   setLoading(status) {
@@ -65,6 +47,26 @@ export class PopupWithForm extends Popup {
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener('submit', this._submit);
+  }
+
+  _resetPopupForm() {
+    if (!this._formButton.classList.contains('popup__formSubmitButton_disabled')) {
+      this._formButton.classList.add('popup__formSubmitButton_disabled');
+      this._formButton.disabled = true;
+    }
+  }
+  _resetErrors() {
+    this._popup.querySelectorAll('.popup__formInputText').forEach((formInputText) => {
+      formInputText.classList.remove('popup__formInputText_error');
+      formInputText.value = '';
+    });
+  }
+
+  _cleanPopupForm() {
+    this._resetErrors();
+    this._resetPopupForm();
+    this._form.reset();
+    this._form.removeEventListener('submit', this._submit);
   }
 
   close() {

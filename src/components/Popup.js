@@ -3,11 +3,14 @@ import { escapeCode } from '../utils/constants.js';
 export class Popup {
   constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);
-    this._handleEscClose = (evt) => {
-      if (evt.keyCode === escapeCode) {
-        this.close();
-      }
-    };
+
+    this._handleEscClose = this._handleEscClose.bind(this);
+  }
+
+  _handleEscClose(evt) {
+    if (evt.keyCode === escapeCode) {
+      this.close();
+    }
   }
 
   open() {
